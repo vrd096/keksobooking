@@ -3,10 +3,14 @@ var declarationTitle = ['Большая уютная квартира', 'Мал�
 var declarationType = ['palace', 'flat', 'house', 'bungalo'];
 var declarationCheck = ['12:00', '13:00', '14:00'];
 var declarationFeatures = ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"];
+var declarationFeaturesLength = declarationFeatures.length;
 
 var randomNumber = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 };
+
+var randomNumberArray = randomNumber(0, declarationFeaturesLength + 1);
+
 
 var randomString = function (param) {
     var randomParam =  param[Math.floor(Math.random() * param.length)];
@@ -32,7 +36,7 @@ var CreateObject = function (value) {
             "quests": randomNumber(1, 5),
             "checkin": randomString(declarationCheck),
             "checkout": randomString(declarationCheck),
-            "features": 
+            
         };  
         declarations.push(declarationAround);
     }
