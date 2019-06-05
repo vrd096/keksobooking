@@ -20,7 +20,7 @@ var randomString = function (param) {
  var randomArray = function (array) {
     var randomArray = [];
     for (var i = 0; i < array.length; i++) {
-
+        
     }  
  };
  
