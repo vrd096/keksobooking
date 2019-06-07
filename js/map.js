@@ -20,6 +20,18 @@ var declarationFeatures = [
   "conditioner"
 ];
 var declarationFeaturesLength = declarationFeatures.length;
+var arrayPhotos = [
+  "http://o0.github.io/assets/images/tokyo/hotel1.jpg",
+  "http://o0.github.io/assets/images/tokyo/hotel2.jpg",
+  "http://o0.github.io/assets/images/tokyo/hotel3.jpg"
+];
+var blendPhotos = arrayPhotos.sort(function() {
+  return Math.random() - 0.5;
+});
+var mapCard = document.querySelector('template');
+var mapClone = mapCard.cloneNode(true);
+// var mapPin = mapCard.querySelector('.map__pin');
+console.log(mapClone);
 
 var randomNumber = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -44,7 +56,7 @@ var randomArray = function() {
     "elevator",
     "conditioner"
   );
-  randArr.sort(function(){
+  randArr.sort(function() {
     return Math.random() - 0.5;
   });
   randArr.length = randomNumberArray();
@@ -66,7 +78,12 @@ var CreateObject = function(value) {
       quests: randomNumber(1, 5),
       checkin: randomString(declarationCheck),
       checkout: randomString(declarationCheck),
-      features: randomArray()
+      features: randomArray(),
+      description: "",
+      photos: blendPhotos,
+      location: {
+        
+      }
     };
     declarations.push(declarationAround);
   }
