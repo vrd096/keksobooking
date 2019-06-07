@@ -1,4 +1,4 @@
-var declarations = [];
+var offer = [];
 var declarationTitle = [
   "Большая уютная квартира",
   "Маленькая неуютная квартира",
@@ -33,7 +33,11 @@ var mapCard = document
   .querySelector("template")
   .content.querySelector(".map__card");
 var mapInner = document.querySelector(".map__pins");
-console.log(mapInner.offsetWidth);
+var mapPin = document
+  .querySelector("template")
+  .content.querySelector(".map__pin");
+
+
 
 var randomNumber = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -74,7 +78,7 @@ var CreateObject = function(value) {
   for (var i = 1; i <= value; i++) {
     var declarationAround = {
       author: "img/avatars/user" + 0 + i + ".png",
-      offer: declarationTitle[i - 1],
+      title: declarationTitle[i - 1],
       adress:
         randomNumber(300, 600).toString() +
         "," +
@@ -93,10 +97,37 @@ var CreateObject = function(value) {
         y: randomNumber(130, 630)
       }
     };
-    declarations.push(declarationAround);
+    offer.push(declarationAround);
   }
-  return declarations;
+  
+  return offer;
+};
+CreateObject(8);
+
+var renderOffer = function (offers) {
+    var offerElement = document.querySelector("template").cloneNode(true).content;
+    var pinElement = offerElement.querySelector(".map__pin");
+    
+    for (var i = 0; i < offer.length; i++) {
+      
+      pinElement.style.left = offer[i].location.x + "px";
+      pinElement.style.top = offer[i].location.y + "px";
+      pinElement.querySelector("img").src = offer[i].author;
+      pinElement.querySelector("img").alt = offer[i].title;
+      
+      
+    }
+    
+    return offerElement;
 };
 
-console.log(CreateObject(8));
+
+var fragment = document.createDocumentFragment();
+for (var i = 0 ; i < offer.length; i++) {
+  
+  fragment.appendChild(renderOffer(offer[i]));
+  
+};
+mapInner.appendChild(fragment);
+console.log(mapInner);
 map.classList.remove("map--faded");
