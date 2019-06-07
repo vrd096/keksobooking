@@ -28,13 +28,20 @@ var arrayPhotos = [
 var blendPhotos = arrayPhotos.sort(function() {
   return Math.random() - 0.5;
 });
-var mapCard = document.querySelector('template');
-var mapClone = mapCard.cloneNode(true);
-// var mapPin = mapCard.querySelector('.map__pin');
-console.log(mapClone);
+var map = document.querySelector(".map");
+var mapCard = document
+  .querySelector("template")
+  .content.querySelector(".map__card");
+var mapInner = document.querySelector(".map__pins");
+console.log(mapInner.offsetWidth);
 
 var randomNumber = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+};
+
+var randomNumberSize = function() {
+  var mapSize = randomNumber(1, mapInner.offsetWidth);
+  return mapSize;
 };
 
 var randomNumberArray = function() {
@@ -82,7 +89,8 @@ var CreateObject = function(value) {
       description: "",
       photos: blendPhotos,
       location: {
-        
+        x: randomNumberSize(),
+        y: randomNumber(130, 630)
       }
     };
     declarations.push(declarationAround);
@@ -91,3 +99,4 @@ var CreateObject = function(value) {
 };
 
 console.log(CreateObject(8));
+map.classList.remove("map--faded");
