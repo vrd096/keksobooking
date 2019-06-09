@@ -8,7 +8,9 @@ var declarationTitle = [
   "Некрасивый негостеприимный домик",
   "Уютное бунгало далеко от моря",
   "Неуютное бунгало по колено в воде"
-];
+].sort(function() {
+  return Math.random() - 0.5;
+});
 var declarationType = ["palace", "flat", "house", "bungalo"];
 var declarationCheck = ["12:00", "13:00", "14:00"];
 var declarationFeatures = [
@@ -33,7 +35,6 @@ var mapCard = document
   .querySelector("template")
   .content.querySelector(".map__card");
 var mapInner = document.querySelector(".map__pins");
-
 
 var randomNumber = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -82,7 +83,7 @@ var CreateObject = function(value) {
       price: randomNumber(1000, 1000000),
       type: randomString(declarationType),
       rooms: randomNumber(1, 5),
-      quests: randomNumber(1, 5),
+      quests: randomNumber(2, 10),
       checkin: randomString(declarationCheck),
       checkout: randomString(declarationCheck),
       features: randomArray(),
@@ -95,48 +96,67 @@ var CreateObject = function(value) {
     };
     offer.push(declarationAround);
   }
-
   return offer;
 };
 CreateObject(8);
-
+console.log(offer);
 var renderIcon = function() {
   var offerElement = document.querySelector("template").cloneNode(true).content;
   var pinElement = offerElement.querySelector(".map__pin");
-
   pinElement.style.left = offer[i].location.x + "px";
   pinElement.style.top = offer[i].location.y + "px";
   pinElement.querySelector("img").src = offer[i].author;
   pinElement.querySelector("img").alt = offer[i].title;
-
   return pinElement;
 };
 
-var fragmentIcon = document.createDocumentFragment();
-for (var i = 0; i < offer.length; i++) {
-  fragmentIcon.appendChild(renderIcon());
-}
-mapInner.appendChild(fragmentIcon);
-// console.log(mapInner);
-// var offerElement = document.querySelector("template").cloneNode(true).content;
-// var popupElement = offerElement.querySelector(".map__card");
-
-// console.log(popupElement.querySelector(".popup__avatar").src = offer[2].author);
-
-var renderMap = function () {
+var renderPopup = function() {
   var offerElement = document.querySelector("template").cloneNode(true).content;
   var popupElement = offerElement.querySelector(".map__card");
+  
+  popupElement.querySelector(".popup__avatar").src = offer[i].author;
+  popupElement.querySelector(".popup__title").textContent = offer[i].title;
+  popupElement.querySelector(".popup__text--address").textContent = offer[i].adress;
+  popupElement.querySelector(".popup__text--price").textContent = offer[i].price + "₽/ночь";
+  if (offer[i].type === "flat") {
+    popupElement.querySelector(".popup__type").textContent = "Квартира"
+  }
+  if (offer[i].type === "bungalo") {
+    popupElement.querySelector(".popup__type").textContent = "Бунгало"
+  }
+  if (offer[i].type === "house") {
+    popupElement.querySelector(".popup__type").textContent = "Дом"
+  }
+  if (offer[i].type === "palace") {
+    popupElement.querySelector(".popup__type").textContent = "Дворец"
+  }
 
-  popupElement.querySelector(".popup__avatar").src = offer[1].author;
-
+  if (offer[i].rooms === 1) {
+  popupElement.querySelector(".popup__text--capacity").textContent = offer[i].rooms + " комната для " + offer[i].quests + " гостей";
+  }
+  else if (offer[i].rooms > 1) {
+  popupElement.querySelector(".popup__text--capacity").textContent = offer[i].rooms + " комнаты для " + offer[i].quests + " гостей";
+  }
+  popupElement.querySelector(".popup__text--time").textContent = "Время заезда " + offer[i].checkin + " , " + "время выезда " +  offer[i].checkout;
+  while (popupElement.querySelector(".feature")) {
+    popupElement.querySelector(".popup__features").removeChild(popupElement.querySelector(".popup__features").querySelector(".feature"));
+  }
+  if (offer[i].features === "wifi") {
+    popupElement.querySelector(".popup__features").createElement();
+  }
+ 
+  
   return popupElement;
 };
-console.log(renderMap());
-
+var fragmentIcon = document.createDocumentFragment();
 var fragmentPopup = document.createDocumentFragment();
+
 for (var i = 0; i < offer.length; i++) {
-  fragmentPopup.appendChild(renderMap());
+  fragmentIcon.appendChild(renderIcon());
+  mapInner.appendChild(fragmentIcon);
+
+  fragmentPopup.appendChild(renderPopup());
+  map.appendChild(fragmentPopup);
 }
-// console.log(map);
-map.appendChild(fragmentPopup);
+
 map.classList.remove("map--faded");
