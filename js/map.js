@@ -37,8 +37,6 @@ var mapPin = document
   .querySelector("template")
   .content.querySelector(".map__pin");
 
-
-
 var randomNumber = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
@@ -99,35 +97,28 @@ var CreateObject = function(value) {
     };
     offer.push(declarationAround);
   }
-  
+
   return offer;
 };
 CreateObject(8);
 
-var renderOffer = function (offers) {
-    var offerElement = document.querySelector("template").cloneNode(true).content;
-    var pinElement = offerElement.querySelector(".map__pin");
-    
-    for (var i = 0; i < offer.length; i++) {
-      
-      pinElement.style.left = offer[i].location.x + "px";
-      pinElement.style.top = offer[i].location.y + "px";
-      pinElement.querySelector("img").src = offer[i].author;
-      pinElement.querySelector("img").alt = offer[i].title;
-      
-      
-    }
-    
-    return offerElement;
-};
+var renderOffer = function() {
+  var offerElement = document.querySelector("template").cloneNode(true).content;
+  var pinElement = offerElement.querySelector(".map__pin");
 
+  pinElement.style.left = offer[i].location.x + "px";
+  pinElement.style.top = offer[i].location.y + "px";
+  pinElement.querySelector("img").src = offer[i].author;
+  pinElement.querySelector("img").alt = offer[i].title;
+
+  return offerElement;
+};
 
 var fragment = document.createDocumentFragment();
-for (var i = 0 ; i < offer.length; i++) {
-  
+for (var i = 0; i < offer.length; i++) {
   fragment.appendChild(renderOffer(offer[i]));
-  
-};
+}
+
 mapInner.appendChild(fragment);
-console.log(mapInner);
+
 map.classList.remove("map--faded");
