@@ -33,16 +33,14 @@ var mapCard = document
   .querySelector("template")
   .content.querySelector(".map__card");
 var mapInner = document.querySelector(".map__pins");
-var mapPin = document
-  .querySelector("template")
-  .content.querySelector(".map__pin");
+
 
 var randomNumber = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
 var randomNumberSize = function() {
-  var mapSize = randomNumber(1, mapInner.offsetWidth);
+  var mapSize = randomNumber(50, mapInner.offsetWidth - 50);
   return mapSize;
 };
 
@@ -102,7 +100,7 @@ var CreateObject = function(value) {
 };
 CreateObject(8);
 
-var renderOffer = function() {
+var renderIcon = function() {
   var offerElement = document.querySelector("template").cloneNode(true).content;
   var pinElement = offerElement.querySelector(".map__pin");
 
@@ -111,14 +109,34 @@ var renderOffer = function() {
   pinElement.querySelector("img").src = offer[i].author;
   pinElement.querySelector("img").alt = offer[i].title;
 
-  return offerElement;
+  return pinElement;
 };
 
-var fragment = document.createDocumentFragment();
+var fragmentIcon = document.createDocumentFragment();
 for (var i = 0; i < offer.length; i++) {
-  fragment.appendChild(renderOffer(offer[i]));
+  fragmentIcon.appendChild(renderIcon());
 }
+mapInner.appendChild(fragmentIcon);
+// console.log(mapInner);
+// var offerElement = document.querySelector("template").cloneNode(true).content;
+// var popupElement = offerElement.querySelector(".map__card");
 
-mapInner.appendChild(fragment);
+// console.log(popupElement.querySelector(".popup__avatar").src = offer[2].author);
 
+var renderMap = function () {
+  var offerElement = document.querySelector("template").cloneNode(true).content;
+  var popupElement = offerElement.querySelector(".map__card");
+
+  popupElement.querySelector(".popup__avatar").src = offer[1].author;
+
+  return popupElement;
+};
+console.log(renderMap());
+
+var fragmentPopup = document.createDocumentFragment();
+for (var i = 0; i < offer.length; i++) {
+  fragmentPopup.appendChild(renderMap());
+}
+// console.log(map);
+map.appendChild(fragmentPopup);
 map.classList.remove("map--faded");
