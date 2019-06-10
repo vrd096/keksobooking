@@ -53,7 +53,15 @@ var randomString = function(param) {
   var randomParam = param[Math.floor(Math.random() * param.length)];
   return randomParam;
 };
-// взять из массива declarationFeatures и превратить в массив с рандомным количеством слов от 1 до 6
+var makeElement = function(tagName, className, text) {
+  var element = document.createElement(tagName);
+  element.classList.add(className);
+  if (text) {
+    element.textContent = text;
+  }
+  return element;
+};
+
 var randomArray = function() {
   var randArr = [];
   randArr.push(
@@ -64,9 +72,9 @@ var randomArray = function() {
     "elevator",
     "conditioner"
   );
-  randArr.sort(function() {
-    return Math.random() - 0.5;
-  });
+  // randArr.sort(function() {
+  //   return Math.random() - 0.5;
+  // });
   randArr.length = randomNumberArray();
   return randArr;
 };
@@ -99,7 +107,7 @@ var CreateObject = function(value) {
   return offer;
 };
 CreateObject(8);
-console.log(offer);
+
 var renderIcon = function() {
   var offerElement = document.querySelector("template").cloneNode(true).content;
   var pinElement = offerElement.querySelector(".map__pin");
@@ -113,41 +121,167 @@ var renderIcon = function() {
 var renderPopup = function() {
   var offerElement = document.querySelector("template").cloneNode(true).content;
   var popupElement = offerElement.querySelector(".map__card");
-  
+
   popupElement.querySelector(".popup__avatar").src = offer[i].author;
   popupElement.querySelector(".popup__title").textContent = offer[i].title;
-  popupElement.querySelector(".popup__text--address").textContent = offer[i].adress;
-  popupElement.querySelector(".popup__text--price").textContent = offer[i].price + "₽/ночь";
+  popupElement.querySelector(".popup__text--address").textContent =
+    offer[i].adress;
+  popupElement.querySelector(".popup__text--price").textContent =
+    offer[i].price + "₽/ночь";
   if (offer[i].type === "flat") {
-    popupElement.querySelector(".popup__type").textContent = "Квартира"
+    popupElement.querySelector(".popup__type").textContent = "Квартира";
   }
   if (offer[i].type === "bungalo") {
-    popupElement.querySelector(".popup__type").textContent = "Бунгало"
+    popupElement.querySelector(".popup__type").textContent = "Бунгало";
   }
   if (offer[i].type === "house") {
-    popupElement.querySelector(".popup__type").textContent = "Дом"
+    popupElement.querySelector(".popup__type").textContent = "Дом";
   }
   if (offer[i].type === "palace") {
-    popupElement.querySelector(".popup__type").textContent = "Дворец"
+    popupElement.querySelector(".popup__type").textContent = "Дворец";
   }
 
   if (offer[i].rooms === 1) {
-  popupElement.querySelector(".popup__text--capacity").textContent = offer[i].rooms + " комната для " + offer[i].quests + " гостей";
+    popupElement.querySelector(".popup__text--capacity").textContent =
+      offer[i].rooms + " комната для " + offer[i].quests + " гостей";
+  } else if (offer[i].rooms > 1) {
+    popupElement.querySelector(".popup__text--capacity").textContent =
+      offer[i].rooms + " комнаты для " + offer[i].quests + " гостей";
   }
-  else if (offer[i].rooms > 1) {
-  popupElement.querySelector(".popup__text--capacity").textContent = offer[i].rooms + " комнаты для " + offer[i].quests + " гостей";
-  }
-  popupElement.querySelector(".popup__text--time").textContent = "Время заезда " + offer[i].checkin + " , " + "время выезда " +  offer[i].checkout;
+  popupElement.querySelector(".popup__text--time").textContent =
+    "Время заезда " +
+    offer[i].checkin +
+    " , " +
+    "время выезда " +
+    offer[i].checkout;
   while (popupElement.querySelector(".feature")) {
-    popupElement.querySelector(".popup__features").removeChild(popupElement.querySelector(".popup__features").querySelector(".feature"));
+    popupElement
+      .querySelector(".popup__features")
+      .removeChild(
+        popupElement.querySelector(".popup__features").querySelector(".feature")
+      );
   }
-  if (offer[i].features === "wifi") {
-    popupElement.querySelector(".popup__features").createElement();
+
+  if (offer[i].features.length === 1) {
+    var wifi = makeElement("li", "feature");
+    wifi.classList.add("feature--wifi");
+    popupElement.querySelector(".popup__features").appendChild(wifi);
   }
- 
+  if (offer[i].features.length === 2) {
+    var wifi = makeElement("li", "feature");
+    wifi.classList.add("feature--wifi");
+    popupElement.querySelector(".popup__features").appendChild(wifi);
+    var dishwasher = makeElement("li", "feature");
+    dishwasher.classList.add("feature--dishwasher");
+    popupElement.querySelector(".popup__features").appendChild(dishwasher);
+  }
+  if (offer[i].features.length === 3) {
+    var wifi = makeElement("li", "feature");
+    wifi.classList.add("feature--wifi");
+    popupElement.querySelector(".popup__features").appendChild(wifi);
+    var dishwasher = makeElement("li", "feature");
+    dishwasher.classList.add("feature--dishwasher");
+    popupElement.querySelector(".popup__features").appendChild(dishwasher);
+    var parking = makeElement("li", "feature");
+    parking.classList.add("feature--parking");
+    popupElement.querySelector(".popup__features").appendChild(parking);
+  }
+  if (offer[i].features.length === 4) {
+    var wifi = makeElement("li", "feature");
+    wifi.classList.add("feature--wifi");
+    popupElement.querySelector(".popup__features").appendChild(wifi);
+    var dishwasher = makeElement("li", "feature");
+    dishwasher.classList.add("feature--dishwasher");
+    popupElement.querySelector(".popup__features").appendChild(dishwasher);
+    var parking = makeElement("li", "feature");
+    parking.classList.add("feature--parking");
+    popupElement.querySelector(".popup__features").appendChild(parking);
+    var washer = makeElement("li", "feature");
+    washer.classList.add("feature--washer");
+    popupElement.querySelector(".popup__features").appendChild(washer);
+  }
+  if (offer[i].features.length === 5) {
+    var wifi = makeElement("li", "feature");
+    wifi.classList.add("feature--wifi");
+    popupElement.querySelector(".popup__features").appendChild(wifi);
+    var dishwasher = makeElement("li", "feature");
+    dishwasher.classList.add("feature--dishwasher");
+    popupElement.querySelector(".popup__features").appendChild(dishwasher);
+    var parking = makeElement("li", "feature");
+    parking.classList.add("feature--parking");
+    popupElement.querySelector(".popup__features").appendChild(parking);
+    var washer = makeElement("li", "feature");
+    washer.classList.add("feature--washer");
+    popupElement.querySelector(".popup__features").appendChild(washer);
+    var elevator = makeElement("li", "feature");
+    elevator.classList.add("feature--elevator");
+    popupElement.querySelector(".popup__features").appendChild(elevator);
+  }
+  if (offer[i].features.length === 6) {
+    var wifi = makeElement("li", "feature");
+    wifi.classList.add("feature--wifi");
+    popupElement.querySelector(".popup__features").appendChild(wifi);
+    var dishwasher = makeElement("li", "feature");
+    dishwasher.classList.add("feature--dishwasher");
+    popupElement.querySelector(".popup__features").appendChild(dishwasher);
+    var parking = makeElement("li", "feature");
+    parking.classList.add("feature--parking");
+    popupElement.querySelector(".popup__features").appendChild(parking);
+    var washer = makeElement("li", "feature");
+    washer.classList.add("feature--washer");
+    popupElement.querySelector(".popup__features").appendChild(washer);
+    var elevator = makeElement("li", "feature");
+    elevator.classList.add("feature--elevator");
+    popupElement.querySelector(".popup__features").appendChild(elevator);
+    var conditioner = makeElement("li", "feature");
+    conditioner.classList.add("feature--conditioner");
+    popupElement.querySelector(".popup__features").appendChild(conditioner);
+  }
+  popupElement.querySelector(".popup__description").textContent =
+    offer[i].description;
+  // popupElement.querySelector(".popup__photos").src = offer[i].photos;
+  while (popupElement.querySelector(".popup__pictures").querySelector("li")) {
+    popupElement
+      .querySelector(".popup__pictures")
+      .removeChild(
+        popupElement.querySelector(".popup__pictures").querySelector("li")
+      );
+  }
   
+
+  var popupPhotosItemOne = makeElement("li", "popup__pictures-item");
+  var popupPhotosOne = makeElement("img", "popup__photos-one");
+  popupElement.querySelector(".popup__pictures").appendChild(popupPhotosItemOne);
+  popupElement.querySelector(".popup__pictures").querySelector("li").appendChild(popupPhotosOne);
+  var popupPhotoOne = popupElement.querySelector(".popup__pictures").querySelector(".popup__photos-one");
+  popupPhotoOne.src = offer[i].photos[0]; 
+  popupPhotoOne.setAttribute("width", "60");
+  popupPhotoOne.setAttribute("height", "60");
+  popupPhotoOne.style.margin = "5px";
+
+  var popupPhotosItemTwo = makeElement("li", "popup__pictures-item");
+  var popupPhotosTwo = makeElement("img", "popup__photos-two");
+  popupElement.querySelector(".popup__pictures").appendChild(popupPhotosItemTwo);
+  popupElement.querySelector(".popup__pictures").querySelector("li").appendChild(popupPhotosTwo);
+  var popupPhotoTwo = popupElement.querySelector(".popup__pictures").querySelector(".popup__photos-two");
+  popupPhotoTwo.src = offer[i].photos[1]; 
+  popupPhotoTwo.setAttribute("width", "60");
+  popupPhotoTwo.setAttribute("height", "60");
+  popupPhotoTwo.style.margin = "5px";
+
+  var popupPhotosItemThree = makeElement("li", "popup__pictures-item");
+  var popupPhotosThree = makeElement("img", "popup__photos-three");
+  popupElement.querySelector(".popup__pictures").appendChild(popupPhotosItemThree);
+  popupElement.querySelector(".popup__pictures").querySelector("li").appendChild(popupPhotosThree);
+  var popupPhotoThree = popupElement.querySelector(".popup__pictures").querySelector(".popup__photos-three");
+  popupPhotoThree.src = offer[i].photos[2]; 
+  popupPhotoThree.setAttribute("width", "60");
+  popupPhotoThree.setAttribute("height", "60");
+  popupPhotoThree.style.margin = "5px";
+
   return popupElement;
 };
+
 var fragmentIcon = document.createDocumentFragment();
 var fragmentPopup = document.createDocumentFragment();
 
