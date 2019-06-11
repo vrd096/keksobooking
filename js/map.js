@@ -247,34 +247,54 @@ var renderPopup = function() {
         popupElement.querySelector(".popup__pictures").querySelector("li")
       );
   }
-  
 
   var popupPhotosItemOne = makeElement("li", "popup__pictures-item");
   var popupPhotosOne = makeElement("img", "popup__photos-one");
-  popupElement.querySelector(".popup__pictures").appendChild(popupPhotosItemOne);
-  popupElement.querySelector(".popup__pictures").querySelector("li").appendChild(popupPhotosOne);
-  var popupPhotoOne = popupElement.querySelector(".popup__pictures").querySelector(".popup__photos-one");
-  popupPhotoOne.src = offer[i].photos[0]; 
+  popupElement
+    .querySelector(".popup__pictures")
+    .appendChild(popupPhotosItemOne);
+  popupElement
+    .querySelector(".popup__pictures")
+    .querySelector("li")
+    .appendChild(popupPhotosOne);
+  var popupPhotoOne = popupElement
+    .querySelector(".popup__pictures")
+    .querySelector(".popup__photos-one");
+  popupPhotoOne.src = offer[i].photos[0];
   popupPhotoOne.setAttribute("width", "60");
   popupPhotoOne.setAttribute("height", "60");
   popupPhotoOne.style.margin = "5px";
 
   var popupPhotosItemTwo = makeElement("li", "popup__pictures-item");
   var popupPhotosTwo = makeElement("img", "popup__photos-two");
-  popupElement.querySelector(".popup__pictures").appendChild(popupPhotosItemTwo);
-  popupElement.querySelector(".popup__pictures").querySelector("li").appendChild(popupPhotosTwo);
-  var popupPhotoTwo = popupElement.querySelector(".popup__pictures").querySelector(".popup__photos-two");
-  popupPhotoTwo.src = offer[i].photos[1]; 
+  popupElement
+    .querySelector(".popup__pictures")
+    .appendChild(popupPhotosItemTwo);
+  popupElement
+    .querySelector(".popup__pictures")
+    .querySelector("li")
+    .appendChild(popupPhotosTwo);
+  var popupPhotoTwo = popupElement
+    .querySelector(".popup__pictures")
+    .querySelector(".popup__photos-two");
+  popupPhotoTwo.src = offer[i].photos[1];
   popupPhotoTwo.setAttribute("width", "60");
   popupPhotoTwo.setAttribute("height", "60");
   popupPhotoTwo.style.margin = "5px";
 
   var popupPhotosItemThree = makeElement("li", "popup__pictures-item");
   var popupPhotosThree = makeElement("img", "popup__photos-three");
-  popupElement.querySelector(".popup__pictures").appendChild(popupPhotosItemThree);
-  popupElement.querySelector(".popup__pictures").querySelector("li").appendChild(popupPhotosThree);
-  var popupPhotoThree = popupElement.querySelector(".popup__pictures").querySelector(".popup__photos-three");
-  popupPhotoThree.src = offer[i].photos[2]; 
+  popupElement
+    .querySelector(".popup__pictures")
+    .appendChild(popupPhotosItemThree);
+  popupElement
+    .querySelector(".popup__pictures")
+    .querySelector("li")
+    .appendChild(popupPhotosThree);
+  var popupPhotoThree = popupElement
+    .querySelector(".popup__pictures")
+    .querySelector(".popup__photos-three");
+  popupPhotoThree.src = offer[i].photos[2];
   popupPhotoThree.setAttribute("width", "60");
   popupPhotoThree.setAttribute("height", "60");
   popupPhotoThree.style.margin = "5px";
