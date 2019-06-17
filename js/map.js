@@ -111,6 +111,7 @@ CreateObject(8);
 var renderIcon = function() {
   var offerElement = document.querySelector("template").cloneNode(true).content;
   var pinElement = offerElement.querySelector(".map__pin");
+  pinElement.classList.add("hidden");
   pinElement.style.left = offer[i].location.x + "px";
   pinElement.style.top = offer[i].location.y + "px";
   pinElement.querySelector("img").src = offer[i].author;
@@ -121,7 +122,7 @@ var renderIcon = function() {
 var renderPopup = function() {
   var offerElement = document.querySelector("template").cloneNode(true).content;
   var popupElement = offerElement.querySelector(".map__card");
-
+  popupElement.classList.add("hidden");
   popupElement.querySelector(".popup__avatar").src = offer[i].author;
   popupElement.querySelector(".popup__title").textContent = offer[i].title;
   popupElement.querySelector(".popup__text--address").textContent =
@@ -247,7 +248,6 @@ var renderPopup = function() {
         popupElement.querySelector(".popup__pictures").querySelector("li")
       );
   }
-
   var popupPhotosItemOne = makeElement("li", "popup__pictures-item");
   var popupPhotosOne = makeElement("img", "popup__photos-one");
   popupElement
@@ -312,5 +312,34 @@ for (var i = 0; i < offer.length; i++) {
   fragmentPopup.appendChild(renderPopup());
   map.appendChild(fragmentPopup);
 }
+var mapForm = document.querySelectorAll(".map__filter");
+var pinElement = document.querySelectorAll(".map__pin");
+var pinMain = document.querySelector(".map__pin--main");
+var popupElement = document.querySelectorAll(".map__card");
+var popupClose = document.querySelector(".popup__close");
 
-map.classList.remove("map--faded");
+
+pinMain.addEventListener("mouseup", function() {
+  for (var i = 0; i < pinElement.length; i++) {
+    pinElement[i].classList.remove("hidden");
+  }
+  for (var i = 0; i < mapForm.length; i++) {
+    mapForm[i].removeAttribute("disabled");
+  }
+  map.classList.remove("map--faded");
+});
+console.log(popupElement[0]);
+for (var i = 0; i < pinElement.length; i++) {
+  pinElement[i].addEventListener("click", function() {
+    // popupElement[2].classList.remove("hidden");
+    if (pinElement[1].querySelector("img").src === popupElement[0].querySelector("img").src) {
+      popupElement[0].classList.remove("hidden");
+    }
+  });
+};
+popupClose.addEventListener("click", function (){
+  for (var i = 0; i < popupElement.length; i++) {
+    popupElement[i].classList.add("hidden");
+  }
+});
+// console.log(map);
