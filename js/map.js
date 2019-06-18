@@ -343,8 +343,6 @@ var targetPin = function(evt) {
       popupElement[i].classList.remove("hidden");
       map.removeEventListener("click", targetPin);
       document.addEventListener("keyup", popupClosed);
-    } else {
-      console.log("false");
     }
   }
 };
@@ -353,7 +351,6 @@ map.addEventListener("click", targetPin);
 var popupClosed = function() {
   for (var i = 0; i < popupElement.length; i++) {
     popupElement[i].classList.add("hidden");
-    
   }
   map.addEventListener("click", targetPin);
   document.removeEventListener("keyup", popupClosed);
@@ -362,6 +359,5 @@ var popupClosed = function() {
 for (var i = 0; i < popupClose.length; i++) {
   popupClose[i].addEventListener("click", popupClosed);
 }
-
 
 // console.log(map);
