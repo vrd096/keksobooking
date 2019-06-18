@@ -318,6 +318,18 @@ var pinMain = document.querySelector(".map__pin--main");
 var popupElement = document.querySelectorAll(".map__card");
 var popupClose = document.querySelectorAll(".popup__close");
 var ESC_KEYCODE = 27;
+var noticeForm = document.querySelector(".notice__form");
+var noticeAddress = noticeForm.querySelector("#address");
+
+var axesPin = function() {
+  console.log(pinMain.getBoundingClientRect());
+  console.log(pageYOffset);
+  var pinX = Math.round(pinMain.getBoundingClientRect().x + pageXOffset);
+  var pinY = Math.round(pinMain.getBoundingClientRect().y + pageYOffset);
+  return (noticeAddress.value = pinX + "," + pinY);
+};
+
+axesPin();
 
 pinMain.addEventListener("mouseup", function() {
   for (var i = 0; i < pinElement.length; i++) {
@@ -327,6 +339,8 @@ pinMain.addEventListener("mouseup", function() {
     mapForm[i].removeAttribute("disabled");
   }
   map.classList.remove("map--faded");
+  noticeForm.classList.remove("notice__form--disabled");
+  axesPin();
 });
 
 var targetPin = function(evt) {
