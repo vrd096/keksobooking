@@ -369,3 +369,41 @@ var popupClosed = function() {
 for (var i = 0; i < popupClose.length; i++) {
   popupClose[i].addEventListener("click", popupClosed);
 }
+/* валидация формы: 
+-проверка количества комнат и гостей, до 2х человек  на одну комнату вызов метода setCustomValidity если не верно и заблокировать отправку формы
+-в поле адреса при отпускании кнопки мыши записываются координаты (с учетом кончика указателя)
+
+*/
+var numberRoom = document.querySelector("#room_number");
+var numberPeople = document.querySelector("#capacity");
+var buttonForm = document.querySelector(".form__submit");
+
+var validNumberPeople = function (evt) {
+  if (numberRoom.value == 1 && numberPeople.value > 2) {
+    // evt.preventDefault();
+    numberPeople.validity.valid = false;
+    numberPeople.setCustomValidity("Слишком много людей для этой комнаты");
+    console.log(numberPeople.validity);
+    // console.log("слишком много людей для одной комнаты");
+    console.log("false");
+  } else {
+    numberPeople.validity.valid = true;
+    console.log("true");
+    console.log(numberPeople.validity);
+  }
+  
+};
+buttonForm.addEventListener("click", function() {
+  validNumberPeople();
+  
+});
+
+
+noticeForm.addEventListener("submit", function(evt) {
+  evt.preventDefault();
+  validNumberPeople();
+  // console.log(numberPeople.validity);
+});
+
+console.log(numberRoom.value);
+// console.log(numberPeople.validity);

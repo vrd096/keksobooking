@@ -169,6 +169,7 @@
         <form
           class="notice__form notice__form--disabled"
           method="post"
+          action="https://js.dump.academy/keksobooking"
           enctype="multipart/form-data"
           autocomplete="off"
         >
@@ -206,6 +207,8 @@
               name="title"
               type="text"
               placeholder="Милая, уютная квартирка в центре Токио"
+              minlength="10"
+              maxlength="40"
               required
             />
           </fieldset>
@@ -258,18 +261,16 @@
               <option value="1" selected>1 комната</option>
               <option value="2">2 комнаты</option>
               <option value="3">3 комнаты</option>
-              <option value="100">100 комнат</option>
+              <option value="4">4 комнаты</option>
+              <option value="5">5 комнат</option>
             </select>
           </fieldset>
 
           <fieldset class="form__element">
             <label for="capacity">Количество мест</label>
-            <select id="capacity" name="capacity">
-              <option value="3" selected>для 3 гостей</option>
-              <option value="2">для 2 гостей</option>
-              <option value="1">для 1 гостя</option>
-              <option value="0">не для гостей</option>
-            </select>
+            <input type="number" id="capacity" name="capacity" min="0" max="10" value="0">
+             
+            </input>
           </fieldset>
 
           <fieldset class="form__element features form__element--wide">
