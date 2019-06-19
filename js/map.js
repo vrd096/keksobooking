@@ -378,32 +378,18 @@ var numberRoom = document.querySelector("#room_number");
 var numberPeople = document.querySelector("#capacity");
 var buttonForm = document.querySelector(".form__submit");
 
-var validNumberPeople = function (evt) {
-  if (numberRoom.value == 1 && numberPeople.value > 2) {
-    // evt.preventDefault();
-    numberPeople.validity.valid = false;
-    numberPeople.setCustomValidity("Слишком много людей для этой комнаты");
-    console.log(numberPeople.validity);
-    // console.log("слишком много людей для одной комнаты");
-    console.log("false");
-  } else {
-    numberPeople.validity.valid = true;
-    console.log("true");
-    console.log(numberPeople.validity);
+numberPeople.addEventListener("change", function() {
+  for (var i = 0; i < numberRoom.value; i++) {
+    if (numberRoom.value[i] * 2 < numberPeople.value[i]) {
+      numberPeople.setCustomValidity("Не более двух людей на одну комнату");
+      console.log("false");
+    } else if (numberRoom.value[i] * 2 >= numberPeople.value[i]) {
+      numberPeople.setCustomValidity("");
+      console.log("true");
+    }
   }
-  
-};
-buttonForm.addEventListener("click", function() {
-  validNumberPeople();
-  
 });
-
 
 noticeForm.addEventListener("submit", function(evt) {
   evt.preventDefault();
-  validNumberPeople();
-  // console.log(numberPeople.validity);
 });
-
-console.log(numberRoom.value);
-// console.log(numberPeople.validity);
