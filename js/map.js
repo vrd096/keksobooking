@@ -322,8 +322,6 @@ var noticeForm = document.querySelector(".notice__form");
 var noticeAddress = noticeForm.querySelector("#address");
 
 var axesPin = function() {
-  console.log(pinMain.getBoundingClientRect());
-  console.log(pageYOffset);
   var pinX = Math.round(pinMain.getBoundingClientRect().x + pageXOffset);
   var pinY = Math.round(pinMain.getBoundingClientRect().y + pageYOffset);
   return (noticeAddress.value = pinX + "," + pinY);
