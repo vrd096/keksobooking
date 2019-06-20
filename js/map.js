@@ -381,10 +381,8 @@ numberPeople.addEventListener("change", function() {
   for (var i = 0; i < numberRoom.value; i++) {
     if (numberRoom.value[i] * 2 < numberPeople.value[i]) {
       numberPeople.setCustomValidity("Не более двух людей на одну комнату");
-      console.log("false");
     } else if (numberRoom.value[i] * 2 >= numberPeople.value[i]) {
       numberPeople.setCustomValidity("");
-      console.log("true");
     }
   }
 });
