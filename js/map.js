@@ -322,11 +322,10 @@ var noticeForm = document.querySelector(".notice__form");
 var noticeAddress = noticeForm.querySelector("#address");
 
 var axesPin = function() {
-  var pinX = Math.round(pinMain.getBoundingClientRect().x + pageXOffset);
-  var pinY = Math.round(pinMain.getBoundingClientRect().y + pageYOffset);
+  var pinX = Math.round(pinMain.offsetLeft);
+  var pinY = Math.round(pinMain.offsetTop + 50);
   return (noticeAddress.value = pinX + "," + pinY);
 };
-
 axesPin();
 
 pinMain.addEventListener("mouseup", function() {
