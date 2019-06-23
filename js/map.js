@@ -367,12 +367,8 @@ var popupClosed = function() {
 
 for (var i = 0; i < popupClose.length; i++) {
   popupClose[i].addEventListener("click", popupClosed);
-}
-/* валидация формы: 
--проверка количества комнат и гостей, до 2х человек  на одну комнату вызов метода setCustomValidity если не верно и заблокировать отправку формы
--в поле адреса при отпускании кнопки мыши записываются координаты (с учетом кончика указателя)
+};
 
-*/
 var numberRoom = document.querySelector("#room_number");
 var numberPeople = document.querySelector("#capacity");
 var buttonForm = document.querySelector(".form__submit");
