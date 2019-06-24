@@ -66,77 +66,77 @@
       }
 
       if (window.offer[i].features.length === 1) {
-        var wifi = makeElement("li", "feature");
+        var wifi = window.makeElement("li", "feature");
         wifi.classList.add("feature--wifi");
         popupElement.querySelector(".popup__features").appendChild(wifi);
       }
       if (window.offer[i].features.length === 2) {
-        var wifi = makeElement("li", "feature");
+        var wifi = window.makeElement("li", "feature");
         wifi.classList.add("feature--wifi");
         popupElement.querySelector(".popup__features").appendChild(wifi);
-        var dishwasher = makeElement("li", "feature");
+        var dishwasher = window.makeElement("li", "feature");
         dishwasher.classList.add("feature--dishwasher");
         popupElement.querySelector(".popup__features").appendChild(dishwasher);
       }
       if (window.offer[i].features.length === 3) {
-        var wifi = makeElement("li", "feature");
+        var wifi = window.makeElement("li", "feature");
         wifi.classList.add("feature--wifi");
         popupElement.querySelector(".popup__features").appendChild(wifi);
-        var dishwasher = makeElement("li", "feature");
+        var dishwasher = window.makeElement("li", "feature");
         dishwasher.classList.add("feature--dishwasher");
         popupElement.querySelector(".popup__features").appendChild(dishwasher);
-        var parking = makeElement("li", "feature");
+        var parking = window.makeElement("li", "feature");
         parking.classList.add("feature--parking");
         popupElement.querySelector(".popup__features").appendChild(parking);
       }
       if (window.offer[i].features.length === 4) {
-        var wifi = makeElement("li", "feature");
+        var wifi = window.makeElement("li", "feature");
         wifi.classList.add("feature--wifi");
         popupElement.querySelector(".popup__features").appendChild(wifi);
-        var dishwasher = makeElement("li", "feature");
+        var dishwasher = window.makeElement("li", "feature");
         dishwasher.classList.add("feature--dishwasher");
         popupElement.querySelector(".popup__features").appendChild(dishwasher);
-        var parking = makeElement("li", "feature");
+        var parking = window.makeElement("li", "feature");
         parking.classList.add("feature--parking");
         popupElement.querySelector(".popup__features").appendChild(parking);
-        var washer = makeElement("li", "feature");
+        var washer = window.makeElement("li", "feature");
         washer.classList.add("feature--washer");
         popupElement.querySelector(".popup__features").appendChild(washer);
       }
       if (window.offer[i].features.length === 5) {
-        var wifi = makeElement("li", "feature");
+        var wifi = window.makeElement("li", "feature");
         wifi.classList.add("feature--wifi");
         popupElement.querySelector(".popup__features").appendChild(wifi);
-        var dishwasher = makeElement("li", "feature");
+        var dishwasher = window.makeElement("li", "feature");
         dishwasher.classList.add("feature--dishwasher");
         popupElement.querySelector(".popup__features").appendChild(dishwasher);
-        var parking = makeElement("li", "feature");
+        var parking = window.makeElement("li", "feature");
         parking.classList.add("feature--parking");
         popupElement.querySelector(".popup__features").appendChild(parking);
-        var washer = makeElement("li", "feature");
+        var washer = window.makeElement("li", "feature");
         washer.classList.add("feature--washer");
         popupElement.querySelector(".popup__features").appendChild(washer);
-        var elevator = makeElement("li", "feature");
+        var elevator = window.makeElement("li", "feature");
         elevator.classList.add("feature--elevator");
         popupElement.querySelector(".popup__features").appendChild(elevator);
       }
       if (window.offer[i].features.length === 6) {
-        var wifi = makeElement("li", "feature");
+        var wifi = window.makeElement("li", "feature");
         wifi.classList.add("feature--wifi");
         popupElement.querySelector(".popup__features").appendChild(wifi);
-        var dishwasher = makeElement("li", "feature");
+        var dishwasher = window.makeElement("li", "feature");
         dishwasher.classList.add("feature--dishwasher");
         popupElement.querySelector(".popup__features").appendChild(dishwasher);
-        var parking = makeElement("li", "feature");
+        var parking = window.makeElement("li", "feature");
         parking.classList.add("feature--parking");
         popupElement.querySelector(".popup__features").appendChild(parking);
-        var washer = makeElement("li", "feature");
+        var washer = window.makeElement("li", "feature");
         washer.classList.add("feature--washer");
         popupElement.querySelector(".popup__features").appendChild(washer);
-        var elevator = makeElement("li", "feature");
+        var elevator = window.makeElement("li", "feature");
         elevator.classList.add("feature--elevator");
         popupElement.querySelector(".popup__features").appendChild(elevator);
-        var conditioner = makeElement("li", "feature");
+        var conditioner = window.makeElement("li", "feature");
         conditioner.classList.add("feature--conditioner");
         popupElement.querySelector(".popup__features").appendChild(conditioner);
       }
@@ -151,8 +151,8 @@
           );
       }
 
-      var popupPhotosItemOne = makeElement("li", "popup__pictures-item");
-      var popupPhotosOne = makeElement("img", "popup__photos-one");
+      var popupPhotosItemOne = window.makeElement("li", "popup__pictures-item");
+      var popupPhotosOne = window.makeElement("img", "popup__photos-one");
       popupElement
         .querySelector(".popup__pictures")
         .appendChild(popupPhotosItemOne);
@@ -168,8 +168,8 @@
       popupPhotoOne.setAttribute("height", "60");
       popupPhotoOne.style.margin = "5px";
 
-      var popupPhotosItemTwo = makeElement("li", "popup__pictures-item");
-      var popupPhotosTwo = makeElement("img", "popup__photos-two");
+      var popupPhotosItemTwo = window.makeElement("li", "popup__pictures-item");
+      var popupPhotosTwo = window.makeElement("img", "popup__photos-two");
       popupElement
         .querySelector(".popup__pictures")
         .appendChild(popupPhotosItemTwo);
@@ -185,8 +185,8 @@
       popupPhotoTwo.setAttribute("height", "60");
       popupPhotoTwo.style.margin = "5px";
 
-      var popupPhotosItemThree = makeElement("li", "popup__pictures-item");
-      var popupPhotosThree = makeElement("img", "popup__photos-three");
+      var popupPhotosItemThree = window.makeElement("li", "popup__pictures-item");
+      var popupPhotosThree = window.makeElement("img", "popup__photos-three");
       popupElement
         .querySelector(".popup__pictures")
         .appendChild(popupPhotosItemThree);
