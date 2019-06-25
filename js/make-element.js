@@ -3,7 +3,7 @@
 (function(){
  window.makeElement = function(tagName, className, text) {
   var element = document.createElement(tagName);
-  element.classList.add(className);
+  element.className = className;
   if (text) {
     element.textContent = text;
   }
