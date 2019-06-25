@@ -33,9 +33,5 @@
   window.blendPhotos = arrayPhotos.sort(function() {
     return Math.random() - 0.5;
   });
-  var map = document.querySelector(".map");
   window.mapInner = document.querySelector(".map__pins");
-  var mapCard = document
-    .querySelector("template")
-    .content.querySelector(".map__card");
 })();

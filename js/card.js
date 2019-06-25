@@ -64,80 +64,15 @@
               .querySelector(".feature")
           );
       }
-      // console.log();
-      // if (window.offer[i].features.length) {
-      //   for (var j = 0; j <= window.offer[i].features.length; j++) {
-      //     var feature =  window.makeElement("li", "feature");
-      //     if (window.offer[i].features.length === 1) {
-      //       feature.classList.add("feature" + "--" + window.offer[0].features);
-      //     }
 
-      //     popupElement.querySelector(".popup__features").appendChild(feature);
-      //   }
+      var featureLength = window.offer[i].features.length;
 
-      //   // console.log(feature);
-
-      //   console.log(popupElement.querySelector(".popup__features"));
-      // }
-      var wifi = window.makeElement("li", "feature");
-      var dishwasher = window.makeElement("li", "feature");
-      var parking = window.makeElement("li", "feature");
-      var washer = window.makeElement("li", "feature");
-      var elevator = window.makeElement("li", "feature");
-      var conditioner = window.makeElement("li", "feature");
-      if (window.offer[i].features.length === 1) {
-        wifi.classList.add("feature--wifi");
-        popupElement.querySelector(".popup__features").appendChild(wifi);
-      }
-      if (window.offer[i].features.length === 2) {
-        wifi.classList.add("feature--wifi");
-        dishwasher.classList.add("feature--dishwasher");
-        popupElement.querySelector(".popup__features").appendChild(wifi);
-        popupElement.querySelector(".popup__features").appendChild(dishwasher);
-      }
-      if (window.offer[i].features.length === 3) {
-        wifi.classList.add("feature--wifi");
-        dishwasher.classList.add("feature--dishwasher");
-        parking.classList.add("feature--parking");
-        popupElement.querySelector(".popup__features").appendChild(wifi);
-        popupElement.querySelector(".popup__features").appendChild(dishwasher);
-        popupElement.querySelector(".popup__features").appendChild(parking);
-      }
-      if (window.offer[i].features.length === 4) {
-        wifi.classList.add("feature--wifi");
-        dishwasher.classList.add("feature--dishwasher");
-        parking.classList.add("feature--parking");
-        washer.classList.add("feature--washer");
-        popupElement.querySelector(".popup__features").appendChild(wifi);
-        popupElement.querySelector(".popup__features").appendChild(dishwasher);
-        popupElement.querySelector(".popup__features").appendChild(parking);
-        popupElement.querySelector(".popup__features").appendChild(washer);
-      }
-      if (window.offer[i].features.length === 5) {
-        wifi.classList.add("feature--wifi");
-        dishwasher.classList.add("feature--dishwasher");
-        parking.classList.add("feature--parking");
-        washer.classList.add("feature--washer");
-        elevator.classList.add("feature--elevator");
-        popupElement.querySelector(".popup__features").appendChild(wifi);
-        popupElement.querySelector(".popup__features").appendChild(dishwasher);
-        popupElement.querySelector(".popup__features").appendChild(parking);
-        popupElement.querySelector(".popup__features").appendChild(washer);
-        popupElement.querySelector(".popup__features").appendChild(elevator);
-      }
-      if (window.offer[i].features.length === 6) {
-        wifi.classList.add("feature--wifi");
-        dishwasher.classList.add("feature--dishwasher");
-        parking.classList.add("feature--parking");
-        washer.classList.add("feature--washer");
-        elevator.classList.add("feature--elevator");
-        conditioner.classList.add("feature--conditioner");
-        popupElement.querySelector(".popup__features").appendChild(wifi);
-        popupElement.querySelector(".popup__features").appendChild(dishwasher);
-        popupElement.querySelector(".popup__features").appendChild(parking);
-        popupElement.querySelector(".popup__features").appendChild(washer);
-        popupElement.querySelector(".popup__features").appendChild(elevator);
-        popupElement.querySelector(".popup__features").appendChild(conditioner);
+      for (var j = 0; j < featureLength; j++) {
+        var makeFeature = window.makeElement("li", "feature");
+        makeFeature.classList.add(
+          "feature" + "--" + window.offer[i].features[j]
+        );
+        popupElement.querySelector(".popup__features").appendChild(makeFeature);
       }
 
       while (
