@@ -26,6 +26,9 @@
         "elevator",
         "conditioner"
       );
+      randArr.sort(function() {
+        return Math.random() - 0.5;
+      });
       randArr.length = this.randomNumberArray();
       return randArr;
     },
