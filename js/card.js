@@ -66,7 +66,7 @@
       }
 
       var featureLength = window.offer[i].features.length;
-
+      
       for (var j = 0; j < featureLength; j++) {
         var makeFeature = window.makeElement("li", "feature");
         makeFeature.classList.add(
