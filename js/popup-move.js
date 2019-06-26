@@ -9,11 +9,8 @@
       y: evt.clientY
     };
 
-    var dragged = false;
-
     var onMouseMove = function(moveEvt) {
       moveEvt.preventDefault();
-      dragged = true;
 
       var shift = {
         x: startCoords.x - moveEvt.clientX,
@@ -34,14 +31,6 @@
 
       window.map.removeEventListener("mousemove", onMouseMove);
       window.map.removeEventListener("mouseup", onMouseUp);
-
-      //   if (dragged) {
-      //     var onClickPreventDefault = function(evt) {
-      //       evt.preventDefault();
-      //       dialogHandler.removeEventListener("click", onClickPreventDefault);
-      //     };
-      //     dialogHandler.addEventListener("click", onClickPreventDefault);
-      //   }
     };
 
     window.map.addEventListener("mousemove", onMouseMove);
