@@ -8,7 +8,7 @@
     palace: "Дворец"
   };
 
-  function createPopupElement(offer) {
+  window.createPopupElement = function(offer) {
     var popupElement = document
       .querySelector("template")
       .cloneNode(true)
@@ -40,7 +40,7 @@
       offer.checkout;
 
     var featuresEl = popupElement.querySelector(".popup__features");
-    featuresEl.innerHTML = '';
+    featuresEl.innerHTML = "";
 
     offer.features.forEach(function(feature) {
       var className = "feature feature--" + feature;
@@ -50,7 +50,7 @@
 
     // Photos
     var picturesEl = popupElement.querySelector(".popup__pictures");
-    picturesEl.innerHTML = '';
+    picturesEl.innerHTML = "";
 
     offer.photos.forEach(function(photo) {
       var popupPhotoEl = window.makeElement("img", "popup__photos");
@@ -58,24 +58,12 @@
       popupPhotoEl.setAttribute("width", "60");
       popupPhotoEl.setAttribute("height", "60");
       popupPhotoEl.style.margin = "5px";
-  
+
       var popupPhotoItemEl = window.makeElement("li", "popup__pictures-item");
       popupPhotoItemEl.appendChild(popupPhotoEl);
       picturesEl.appendChild(popupPhotoItemEl);
     });
 
     return popupElement;
-  }
-
-  window.renderPopups = function() {
-    var fragmentPopup = document.createDocumentFragment();
-
-    for (var i = 0; i < window.offer.length; i++) {
-      var offer = window.offer[i];
-      var popupElement = createPopupElement(offer);
-      fragmentPopup.appendChild(popupElement);
-    }
-
-    document.querySelector(".map").appendChild(fragmentPopup);
   };
 })();
