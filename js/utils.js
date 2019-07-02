@@ -1,8 +1,6 @@
 "use strict";
 
 (function() {
-  window.map = document.querySelector(".map");
-
   var popupElement = document.querySelectorAll(".map__card");
   var popupClose = document.querySelectorAll(".popup__close");
   var ESC_KEYCODE = 27;
