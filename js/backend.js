@@ -40,23 +40,23 @@ onError - callback при неуспешном выполнении запрос
       onError("Запрос не успел выполниться за " + xhr.timeout + "мс");
     });
 
-    xhr.timeout = 5000;
+    xhr.timeout = 100000;
 
     xhr.open("GET", URL);
-    this.console.log(xhr);
+    
     xhr.send();
   };
 })();
 
-var successLoad = function(pins) {
-  for (var currentPin = 0; currentPin < pins.length; currentPin++) {
-    console.log(pins[currentPin]);
-  }
-};
-var errorLoad = function(error) {
-  
-    console.log(error);
+// var successLoad = function(pins) {
  
-};
+//     console.log(pins);
+  
+// };
+// var errorLoad = function(error) {
+  
+//     console.log(error);
+ 
+// };
 
-window.load(successLoad, errorLoad);
+

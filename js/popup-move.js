@@ -1,7 +1,15 @@
 "use strict";
 
 (function() {
-  window.pinMain.addEventListener("mousedown", function(evt) {
+  var map = document.querySelector(".map");
+  var pinMain = document.querySelector(".map__pin--main");
+  var pinMain = document.querySelector(".map__pin--main");
+  var noticeForm = document.querySelector(".notice__form");
+  var noticeAddress = noticeForm.querySelector("#address");
+  var mapForm = document.querySelectorAll(".map__filter");
+  var pinElement = document.querySelectorAll(".map__pin");
+
+  pinMain.addEventListener("mousedown", function(evt) {
     evt.preventDefault();
 
     var startCoords = {
@@ -22,18 +30,36 @@
         y: moveEvt.clientY
       };
 
-      window.pinMain.style.top = window.pinMain.offsetTop - shift.y + "px";
-      window.pinMain.style.left = window.pinMain.offsetLeft - shift.x + "px";
+      pinMain.style.top = pinMain.offsetTop - shift.y + "px";
+      pinMain.style.left = pinMain.offsetLeft - shift.x + "px";
     };
 
     var onMouseUp = function(upEvt) {
       upEvt.preventDefault();
 
-      window.map.removeEventListener("mousemove", onMouseMove);
-      window.map.removeEventListener("mouseup", onMouseUp);
+      map.removeEventListener("mousemove", onMouseMove);
+      map.removeEventListener("mouseup", onMouseUp);
     };
 
-    window.map.addEventListener("mousemove", onMouseMove);
-    window.map.addEventListener("mouseup", onMouseUp);
+    map.addEventListener("mousemove", onMouseMove);
+    map.addEventListener("mouseup", onMouseUp);
+  });
+  var axesPin = function() {
+    var pinX = Math.round(pinMain.offsetLeft);
+    var pinY = Math.round(pinMain.offsetTop + 50);
+    return (noticeAddress.value = pinX + "," + pinY);
+  };
+  axesPin();
+
+  pinMain.addEventListener("mouseup", function() {
+    for (var i = 0; i < pinElement.length; i++) {
+      pinElement[i].classList.remove("hidden");
+    }
+    for (var i = 0; i < mapForm.length; i++) {
+      mapForm[i].removeAttribute("disabled");
+    }
+    map.classList.remove("map--faded");
+    noticeForm.classList.remove("notice__form--disabled");
+    axesPin();
   });
 })();
