@@ -1,14 +1,12 @@
 "use strict";
 
-
 (function() {
   var map = document.querySelector(".map");
   var pinMain = document.querySelector(".map__pin--main");
   var noticeForm = document.querySelector(".notice__form");
   var noticeAddress = noticeForm.querySelector("#address");
   var mapForm = document.querySelectorAll(".map__filter");
-  
-  
+
   pinMain.addEventListener("mousedown", function(evt) {
     evt.preventDefault();
 

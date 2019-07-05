@@ -7,17 +7,21 @@
       fragment.appendChild(createElement(items[i]));
     }
 
-    document
-      .querySelector(targetSelector)
-      .appendChild(fragment);
+    document.querySelector(targetSelector).appendChild(fragment);
   }
 
   function handleLoadSuccess(pins) {
-    renderItems(pins, window.createPinElement, '.map__pins');
-    renderItems(pins.map(({ author, offer }) => Object.assign({ author }, offer)), window.createPopupElement, '.map');
-    console.log(pins.map(({ author, offer }) => Object.assign({ author }, offer)))
+    renderItems(pins, window.createPinElement, ".map__pins");
+    renderItems(
+      pins.map(({ author, offer }) => Object.assign({ author }, offer)),
+      window.createPopupElement,
+      ".map"
+    );
+    console.log(
+      pins.map(({ author, offer }) => Object.assign({ author }, offer))
+    );
   }
-  
+
   function handleLoadError(error) {
     console.log(error);
   }
