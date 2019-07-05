@@ -19,7 +19,7 @@ onError - callback при неуспешном выполнении запрос
 */
 
 (function() {
-  window.load = function(onLoad, onError) {
+  window.loadData = function(onLoad, onError) {
     var URL = "https://js.dump.academy/keksobooking/data";
     var xhr = new XMLHttpRequest();
     xhr.responseType = "json";
@@ -40,7 +40,7 @@ onError - callback при неуспешном выполнении запрос
       onError("Запрос не успел выполниться за " + xhr.timeout + "мс");
     });
 
-    xhr.timeout = 100000;
+    xhr.timeout = 10000;
 
     xhr.open("GET", URL);
     

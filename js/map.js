@@ -1,18 +1,28 @@
 "use strict";
 (function() {
-  window.renderIcon();
+  function renderItems(items, createElement, targetSelector) {
+    var fragment = document.createDocumentFragment();
 
-  window.renderPopups = (function() {
-    var fragmentPopup = document.createDocumentFragment();
-
-    for (var i = 0; i < window.offer.length; i++) {
-      var offer = window.offer[i];
-      var popupElement = window.createPopupElement(offer);
-      fragmentPopup.appendChild(popupElement);
+    for (var i = 0; i < items.length; i++) {
+      fragment.appendChild(createElement(items[i]));
     }
 
-    document.querySelector(".map").appendChild(fragmentPopup);
-  })();
+    document
+      .querySelector(targetSelector)
+      .appendChild(fragment);
+  }
+
+  function handleLoadSuccess(pins) {
+    renderItems(pins, window.createPinElement, '.map__pins');
+    renderItems(pins.map(({ author, offer }) => Object.assign({ author }, offer)), window.createPopupElement, '.map');
+    console.log(pins.map(({ author, offer }) => Object.assign({ author }, offer)))
+  }
+  
+  function handleLoadError(error) {
+    console.log(error);
+  }
+
+  window.loadData(handleLoadSuccess, handleLoadError);
 
   // var map = document.querySelector(".map");
   // var pinMain = document.querySelector(".map__pin--main");

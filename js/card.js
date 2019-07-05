@@ -8,7 +8,7 @@
     palace: "Дворец"
   };
 
-  window.createPopupElement = function(offer) {
+  window.createPopupElement = function createPopupElement(offer) {
     var popupElement = document
       .querySelector("template")
       .cloneNode(true)
@@ -18,7 +18,7 @@
 
     popupElement.querySelector(".popup__description").textContent =
       offer.description;
-    popupElement.querySelector(".popup__avatar").src = offer.author;
+    popupElement.querySelector(".popup__avatar").src = offer.author.avatar;
     popupElement.querySelector(".popup__title").textContent = offer.title;
     popupElement.querySelector(".popup__text--address").textContent =
       offer.adress;

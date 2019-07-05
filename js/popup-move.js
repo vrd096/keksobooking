@@ -1,12 +1,13 @@
 "use strict";
 
+
 (function() {
   var map = document.querySelector(".map");
   var pinMain = document.querySelector(".map__pin--main");
   var noticeForm = document.querySelector(".notice__form");
   var noticeAddress = noticeForm.querySelector("#address");
   var mapForm = document.querySelectorAll(".map__filter");
-  var pinElement = document.querySelectorAll(".map__pin");
+  
   
   pinMain.addEventListener("mousedown", function(evt) {
     evt.preventDefault();
@@ -52,9 +53,9 @@
   axesPin();
 
   pinMain.addEventListener("mouseup", function() {
+    var pinElement = document.querySelectorAll(".map__pin");
     for (var i = 0; i < pinElement.length; i++) {
       pinElement[i].classList.remove("hidden");
-      // console.log(pinElement[i]);
     }
     for (var i = 0; i < mapForm.length; i++) {
       mapForm[i].removeAttribute("disabled");
