@@ -10,7 +10,7 @@
       .cloneNode(true)
       .content.querySelector(".map__pin");
 
-    pinElement.classList.add("hidden");
+    // pinElement.classList.add("hidden");
     pinElement.style.left = pins.location.x + "px";
     pinElement.style.top = pins.location.y + "px";
     pinElement.querySelector("img").src = pins.author.avatar;
@@ -22,7 +22,7 @@
     return pinElement;
   };
 
-  var successHandler = function(pins) {
+  window.successHandler = function(pins) {
     var fragment = document.createDocumentFragment();
 
     for (var i = 0; i < pins.length; i++) {
@@ -34,5 +34,5 @@
   window.errorLoad = function(error) {
     console.log(error);
   };
-  window.load(successHandler, window.errorLoad);
+  window.load(window.successHandler, window.errorLoad);
 })();

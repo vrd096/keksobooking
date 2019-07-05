@@ -3,12 +3,11 @@
 (function() {
   var map = document.querySelector(".map");
   var pinMain = document.querySelector(".map__pin--main");
-  var pinMain = document.querySelector(".map__pin--main");
   var noticeForm = document.querySelector(".notice__form");
   var noticeAddress = noticeForm.querySelector("#address");
   var mapForm = document.querySelectorAll(".map__filter");
   var pinElement = document.querySelectorAll(".map__pin");
-
+  
   pinMain.addEventListener("mousedown", function(evt) {
     evt.preventDefault();
 
@@ -44,6 +43,7 @@
     map.addEventListener("mousemove", onMouseMove);
     map.addEventListener("mouseup", onMouseUp);
   });
+
   var axesPin = function() {
     var pinX = Math.round(pinMain.offsetLeft);
     var pinY = Math.round(pinMain.offsetTop + 50);
@@ -54,6 +54,7 @@
   pinMain.addEventListener("mouseup", function() {
     for (var i = 0; i < pinElement.length; i++) {
       pinElement[i].classList.remove("hidden");
+      // console.log(pinElement[i]);
     }
     for (var i = 0; i < mapForm.length; i++) {
       mapForm[i].removeAttribute("disabled");
