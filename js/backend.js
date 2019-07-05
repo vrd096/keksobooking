@@ -43,20 +43,18 @@ onError - callback при неуспешном выполнении запрос
     xhr.timeout = 10000;
 
     xhr.open("GET", URL);
-    
+
     xhr.send();
   };
 })();
 
 // var successLoad = function(pins) {
- 
+
 //     console.log(pins);
-  
+
 // };
 // var errorLoad = function(error) {
-  
+
 //     console.log(error);
- 
+
 // };
-
-

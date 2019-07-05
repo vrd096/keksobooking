@@ -33,9 +33,9 @@
     }
     map.addEventListener("click", targetPin);
     document.removeEventListener("keyup", popupClosed);
-  };
 
-  for (var i = 0; i < popupCloseElms.length; i++) {
-    popupCloseElms[i].addEventListener("click", popupClosed);
-  }
+    for (var i = 0; i < popupCloseElms.length; i++) {
+      popupCloseElms[i].addEventListener("click", popupClosed);
+    }
+  };
 })();

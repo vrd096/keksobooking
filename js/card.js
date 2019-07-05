@@ -30,7 +30,7 @@
 
     var roomOrRooms = offer.rooms === 1 ? "комната" : "комнаты";
     popupElement.querySelector(".popup__text--capacity").textContent =
-      offer.rooms + " " + roomOrRooms + " для " + offer.quests + " гостей";
+      offer.rooms + " " + roomOrRooms + " для " + offer.guests + " гостей";
 
     popupElement.querySelector(".popup__text--time").textContent =
       "Время заезда " +
