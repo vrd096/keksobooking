@@ -4,6 +4,8 @@
   var numberRoom = document.querySelector("#room_number");
   var numberPeople = document.querySelector("#capacity");
   var formUpload = document.querySelector(".notice__form");
+  var popupError = document.querySelector(".popup-error");
+  var popupErrorText = document.querySelector(".popup-error__text");
 
   numberPeople.addEventListener("change", function() {
     for (var i = 0; i < numberRoom.value; i++) {
@@ -19,8 +21,13 @@
     formUpload.reset();
   }
 
+  function popupErrorOpen() {
+    popupError.classList.remove("hidden");
+  }
+
   function errorHandler(error) {
-    console.log(error);
+    popupErrorText.textContent = error;
+    popupErrorOpen();
   }
 
   formUpload.addEventListener("submit", function(evt) {

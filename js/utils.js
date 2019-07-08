@@ -4,38 +4,55 @@
   var ESC_KEYCODE = 27;
   var map = document.querySelector(".map");
 
-  var targetPin = function(evt) {
+  function cardPopupHandler(evt) {
     var popupElements = document.querySelectorAll(".map__card");
+    var popupCloseElms = document.querySelectorAll(".popup__close");
 
     for (var i = 0; i < popupElements.length; i++) {
       var popupSrc = popupElements[i].querySelector(".popup__avatar").src;
 
       if (evt.target.src === popupSrc) {
         popupElements[i].classList.remove("hidden");
-        map.removeEventListener("click", targetPin);
+        map.removeEventListener("click", cardPopupHandler);
+
         document.addEventListener("keyup", function(evt) {
           if (evt.keyCode === ESC_KEYCODE) {
-            popupClosed();
+            popupClosed(popupElements);
           }
         });
       }
     }
-  };
+    for (var i = 0; i < popupCloseElms.length; i++) {
+      popupCloseElms[i].addEventListener("click", function() {
+        popupClosed(popupElements);
+      });
+    }
+  }
 
-  map.addEventListener("click", targetPin);
+  map.addEventListener("click", cardPopupHandler);
 
-  var popupClosed = function() {
-    var popupCloseElms = document.querySelectorAll(".popup__close");
+  function popupClosed(items) {
     var popupElements = document.querySelectorAll(".map__card");
 
-    for (var i = 0; i < popupElements.length; i++) {
-      popupElements[i].classList.add("hidden");
+    for (var i = 0; i < items.length; i++) {
+      items[i].classList.add("hidden");
     }
-    map.addEventListener("click", targetPin);
+    map.addEventListener("click", cardPopupHandler);
     document.removeEventListener("keyup", popupClosed);
+  }
 
-    for (var i = 0; i < popupCloseElms.length; i++) {
-      popupCloseElms[i].addEventListener("click", popupClosed);
-    }
-  };
+  function errorPopupClose(evt) {
+    var popupError = document.querySelector(".popup-error");
+
+    popupError.classList.add("hidden");
+    document.addEventListener("keyup", function(evt) {
+      if (evt.keyCode === ESC_KEYCODE) {
+        errorPopupClose();
+        document.removeEventListener("keyup", errorPopupClose);
+      }
+    });
+  }
+  var popupErrorClose = document.querySelector(".popup-error__close");
+  popupErrorClose.addEventListener("click", errorPopupClose);
+  document.addEventListener("keyup", errorPopupClose);
 })();

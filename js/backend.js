@@ -60,10 +60,6 @@ onError - callback при неуспешном выполнении запрос
       }
     });
 
-    xhr.addEventListener("error", function() {
-      onError("Произошла ошибка соеденения");
-    });
-
     xhr.addEventListener("timeout", function() {
       onError("Запрос не успел выполниться за " + xhr.timeout + "мс");
     });
@@ -71,7 +67,7 @@ onError - callback при неуспешном выполнении запрос
     xhr.timeout = 10000;
 
     xhr.open("POST", URL);
-
+    // console.log(xhr);
     xhr.send(data);
   };
 })();
