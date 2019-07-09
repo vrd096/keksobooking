@@ -738,7 +738,7 @@ textarea:focus {
   position: absolute;
   width: 28px;
   height: 4px;
-  background-color: rgb(85, 72, 72);
+  background-color: #444;
   transition: background-color 0.3s;
 }
 
@@ -748,4 +748,9 @@ textarea:focus {
 
 .popup-error__close::after {
   transform: rotate(-45deg);
+}
+
+.popup-error__close:hover::before,
+.popup-error__close:hover::after {
+  background-color: red;
 }

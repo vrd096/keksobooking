@@ -53,15 +53,31 @@ onError - callback при неуспешном выполнении запрос
     xhr.responseType = "json";
 
     xhr.addEventListener("load", function() {
-      if (xhr.status === 200) {
-        onLoad(xhr.response);
-      } else {
-        onError("Статус ошибки: " + xhr.status);
+      switch (xhr.status) {
+        case 200:
+          onLoad(xhr.response);
+          break;
+
+        case 400:
+          onError("Неверный запрос");
+          break;
+
+        case 401:
+          onError("Пользователь не авторизован");
+          break;
+
+        case 404:
+          onError("Ничего не найдено");
+          break;
+
+        default:
+          onError("Статус ответа: " + xhr.status + " " + xhr.statusText);
+          break;
       }
     });
 
     xhr.addEventListener("timeout", function() {
-      onError("Запрос не успел выполниться за " + xhr.timeout + "мс");
+      onError("Долго ожидание от сервера");
     });
 
     xhr.timeout = 10000;
