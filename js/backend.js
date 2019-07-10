@@ -1,22 +1,4 @@
 "use strict";
-/*
-создать глобальные функции
-получать данные с помощью XMLHttpRequest
-обрабатывать данные и передавать через коллбек
-отправлять данные на сервер
-
-Функция получения данных:
-onLoad - callback при успешном выполнение запроса, в параметр набор полученных данных
-onError - callback при неуспешном выполнении запроса, в параметр попадает сообщение о ошибке
-отрисовку объектов брать с сервера , а не из рандомной отрисовки
-
-Функция отправки данных:
-data - объект FormData
-onLoad - callback при успешном выполнении запроса
-onError - callback при неуспешном выполнении запроса, при вызове сообщение о ошибке или объект с описанием ошибки полученный с сервера
-
-
-*/
 
 (function() {
   window.loadData = function(onLoad, onError) {
@@ -53,31 +35,22 @@ onError - callback при неуспешном выполнении запрос
     xhr.responseType = "json";
 
     xhr.addEventListener("load", function() {
-      switch (xhr.status) {
-        case 200:
-          onLoad(xhr.response);
-          break;
-
-        case 400:
-          onError("Неверный запрос");
-          break;
-
-        case 401:
-          onError("Пользователь не авторизован");
-          break;
-
-        case 404:
-          onError("Ничего не найдено");
-          break;
-
-        default:
-          onError("Статус ответа: " + xhr.status + " " + xhr.statusText);
-          break;
+      if (xhr.status >= 200 && xhr.status < 300) {
+        onLoad(xhr.response);
+      } else {
+        var error = new Error("Ошибка " + xhr.status);
+        error.response = xhr.response;
+        error.status = xhr.status;
+        onError(error);
       }
     });
 
+    xhr.addEventListener("error", function() {
+      onError(new Error("Произошла ошибка соеденения"));
+    });
+
     xhr.addEventListener("timeout", function() {
-      onError("Долго ожидание от сервера");
+      onError(new Error("Долго ожидание от сервера"));
     });
 
     xhr.timeout = 10000;

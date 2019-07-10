@@ -25,12 +25,42 @@
     popupError.classList.remove("hidden");
   }
 
+  var translations = {
+    capacity: "Количество мест",
+    title: "Заголовок",
+    "is not correct": "Неверное значение",
+    "should be in range 30..100": "допустимо от 30 до 100 символов"
+  };
+
+  function translate(text) {
+    return translations[text] || text;
+  }
+
   function errorHandler(error) {
-    popupErrorText.textContent = error;
+    popupErrorText.textContent = error.message;
+
+    if (error.status === 400) {
+      error.response.forEach(function(field) {
+        var fieldEl = document.getElementById(field.fieldName);
+        fieldEl.style = "border: 1px solid red";
+      });
+
+      var messages = error.response
+        .map(
+          ({ fieldName, errorMessage }) =>
+            `${translate(fieldName)}: ${translate(errorMessage)}`
+        )
+        .join("\n");
+
+      alert(messages);
+    }
+
+    throw error;
+
     popupErrorOpen();
   }
 
-  formUpload.addEventListener("submit", function(evt) {
+  formUpload.addEventListener("submit", function onFormSubmit(evt) {
     window.saveForm(new FormData(formUpload), resetForm, errorHandler);
     evt.preventDefault();
   });
