@@ -8,7 +8,7 @@
     palace: "Дворец"
   };
 
-  window.createPopupElement = function createPopupElement(offer) {
+  window.createPopupElement = function createPopupElement(pin) {
     var popupElement = document
       .querySelector("template")
       .cloneNode(true)
@@ -17,42 +17,46 @@
     popupElement.classList.add("hidden");
 
     popupElement.querySelector(".popup__description").textContent =
-      offer.description;
-    popupElement.querySelector(".popup__avatar").src = offer.author.avatar;
-    popupElement.querySelector(".popup__title").textContent = offer.title;
+      pin.offer.description;
+    popupElement.querySelector(".popup__avatar").src = pin.author.avatar;
+    popupElement.querySelector(".popup__title").textContent = pin.offer.title;
     popupElement.querySelector(".popup__text--address").textContent =
-      offer.adress;
+      pin.offer.adress;
     popupElement.querySelector(".popup__text--price").textContent =
-      offer.price + "₽/ночь";
+      pin.offer.price + "₽/ночь";
 
-    var typeName = typeNames[offer.type];
+    var typeName = typeNames[pin.offer.type];
     popupElement.querySelector(".popup__type").textContent = typeName;
 
-    var roomOrRooms = offer.rooms === 1 ? "комната" : "комнаты";
+    var roomOrRooms = pin.offer.rooms === 1 ? "комната" : "комнаты";
     popupElement.querySelector(".popup__text--capacity").textContent =
-      offer.rooms + " " + roomOrRooms + " для " + offer.guests + " гостей";
+      pin.offer.rooms +
+      " " +
+      roomOrRooms +
+      " для " +
+      pin.offer.guests +
+      " гостей";
 
     popupElement.querySelector(".popup__text--time").textContent =
       "Время заезда " +
-      offer.checkin +
+      pin.offer.checkin +
       " , " +
       "время выезда " +
-      offer.checkout;
+      pin.offer.checkout;
 
     var featuresEl = popupElement.querySelector(".popup__features");
     featuresEl.innerHTML = "";
 
-    offer.features.forEach(function(feature) {
+    pin.offer.features.forEach(function(feature) {
       var className = "feature feature--" + feature;
       var featureEl = window.makeElement("li", className);
       featuresEl.appendChild(featureEl);
     });
 
-    // Photos
     var picturesEl = popupElement.querySelector(".popup__pictures");
     picturesEl.innerHTML = "";
 
-    offer.photos.forEach(function(photo) {
+    pin.offer.photos.forEach(function(photo) {
       var popupPhotoEl = window.makeElement("img", "popup__photos");
       popupPhotoEl.src = photo;
       popupPhotoEl.setAttribute("width", "60");

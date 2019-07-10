@@ -17,31 +17,29 @@
 
         document.addEventListener("keyup", function(evt) {
           if (evt.keyCode === ESC_KEYCODE) {
-            popupClosed(popupElements);
+            cardPopupClosed(popupElements);
           }
         });
       }
     }
     for (var i = 0; i < popupCloseElms.length; i++) {
       popupCloseElms[i].addEventListener("click", function() {
-        popupClosed(popupElements);
+        cardPopupClosed(popupElements);
       });
     }
   }
 
   map.addEventListener("click", cardPopupHandler);
 
-  function popupClosed(items) {
-    var popupElements = document.querySelectorAll(".map__card");
-
+  function cardPopupClosed(items) {
     for (var i = 0; i < items.length; i++) {
       items[i].classList.add("hidden");
     }
     map.addEventListener("click", cardPopupHandler);
-    document.removeEventListener("keyup", popupClosed);
+    document.removeEventListener("keyup", cardPopupClosed);
   }
 
-  function errorPopupClose(evt) {
+  function errorPopupClose() {
     var popupError = document.querySelector(".popup-error");
 
     popupError.classList.add("hidden");

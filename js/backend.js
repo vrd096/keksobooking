@@ -87,14 +87,3 @@ onError - callback при неуспешном выполнении запрос
     xhr.send(data);
   };
 })();
-
-// var successLoad = function(pins) {
-
-//     console.log(pins);
-
-// };
-// var errorLoad = function(error) {
-
-//     console.log(error);
-
-// };
