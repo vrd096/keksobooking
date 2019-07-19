@@ -17,10 +17,53 @@
 (function() {
   var pinFilters = document.querySelector(".map__filters");
   var selectFilter = pinFilters.querySelectorAll(".map__filter");
+  var selectValue;
+
+  function filterChange(value) {
+    selectValue = value;
+    console.log(selectValue);
+  }
+
+  var getRank = function(pin) {
+    var rank = 0;
+
+    if (pin.offer.type === selectValue) {
+      rank += 2;
+    }
+
+    if (pin.price === selectValue) {
+      rank += 1;
+    }
+
+    return rank;
+  };
+
+  var namesComparator = function(leftName, rightName) {
+    if (leftName > rightName) {
+      return 1;
+    } else if (leftName < rightName) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+
+  var wizardsComparator = function(left, right) {
+    var rankDiff = getRank(right) - getRank(left);
+    return rankDiff === 0 ? namesComparator(left.offer.type, right.offer.type) : rankDiff;
+  };
+
+  window.updateFilter = function updateFilter() {
+
+    window.renderItems(window.loadPins.sort(wizardsComparator), window.createPinElement, ".map__pins");
+    window.renderItems(window.loadPins.sort(wizardsComparator), window.createPopupElement, ".map");
+  };
 
   selectFilter.forEach(function(item) {
-    item.addEventListener("change", function() {
-
+    item.addEventListener("change", function(evt) {
+      selectValue = evt.target.value;
+      filterChange(selectValue);
+      updateFilter();
     });
   });
 })();
