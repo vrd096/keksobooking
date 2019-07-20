@@ -21,7 +21,6 @@
 
   function filterChange(value) {
     selectValue = value;
-    console.log(selectValue);
   }
 
   var getRank = function(pin) {
