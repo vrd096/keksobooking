@@ -76,8 +76,12 @@
 
   function clearPins() {
     var pins = document.querySelectorAll(".map__pin--filter");
+    var cards = document.querySelectorAll(".map__card");
 
     pins.forEach(function(item) {
+      item.remove();
+    });
+    cards.forEach(function(item) {
       item.remove();
     });
   }
