@@ -6,6 +6,7 @@
   var formUpload = document.querySelector(".notice__form");
   var popupError = document.querySelector(".popup-error");
   var popupErrorText = document.querySelector(".popup-error__text");
+  var ESC_KEYCODE = 27;
 
   numberPeople.addEventListener("change", function() {
     for (var i = 0; i < numberRoom.value; i++) {
@@ -74,8 +75,6 @@
 
       alert(messages);
     }
-
-    throw error;
 
     openError();
   }
