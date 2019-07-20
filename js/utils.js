@@ -2,57 +2,44 @@
 
 (function() {
   var ESC_KEYCODE = 27;
-  var map = document.querySelector(".map");
 
-  function cardPopupHandler(evt) {
-    var popupElements = document.querySelectorAll(".map__card");
-    var popupCloseElms = document.querySelectorAll(".popup__close");
-
-    popupElements.forEach(function(item) {
-      var popupSrc = item.querySelector(".popup__avatar").src;
-
-      if (evt.target.src === popupSrc) {
-        item.classList.remove("hidden");
-        map.removeEventListener("click", cardPopupHandler);
-
-        document.addEventListener("keyup", function(evt) {
-          if (evt.keyCode === ESC_KEYCODE) {
-            cardPopupClosed(popupElements);
-          }
-        });
-      }
-    });
-
-    popupCloseElms.forEach(function(item) {
-      item.addEventListener("click", function() {
-        cardPopupClosed(popupElements);
-      });
-    });
+  function handleCardEsc({ keyCode }) {
+    if (keyCode === ESC_KEYCODE) {
+      closeAllCards();
+    }
   }
 
-  map.addEventListener("click", cardPopupHandler);
+  function openCard(pinId) {
+    const cardEl = [...document.querySelectorAll(".map__card")].find(
+      _cardEl => _cardEl.dataset.pinId === pinId
+    );
 
-  function cardPopupClosed(items) {
-    items.forEach(function(item) {
-      item.classList.add("hidden");
-    });
-
-    map.addEventListener("click", cardPopupHandler);
-    document.removeEventListener("keyup", cardPopupClosed);
+    if (cardEl) {
+      cardEl.classList.remove("hidden");
+      document.addEventListener("keyup", handleCardEsc);
+    }
   }
 
-  function errorPopupClose() {
-    var popupError = document.querySelector(".popup-error");
-
-    popupError.classList.add("hidden");
-    document.addEventListener("keyup", function(evt) {
-      if (evt.keyCode === ESC_KEYCODE) {
-        errorPopupClose();
-        document.removeEventListener("keyup", errorPopupClose);
-      }
-    });
+  function closeAllCards() {
+    document
+      .querySelectorAll(".map__card")
+      .forEach(cardEl => cardEl.classList.add("hidden"));
+    document.removeEventListener("keyup", handleCardEsc);
   }
-  var popupErrorClose = document.querySelector(".popup-error__close");
-  popupErrorClose.addEventListener("click", errorPopupClose);
-  document.addEventListener("keyup", errorPopupClose);
+
+  function handleMapClick({ target }) {
+    const isOpenCard = target.classList.contains("js-open-card");
+    const isCloseCard = target.classList.contains("js-close-card");
+
+    if (isOpenCard) {
+      closeAllCards();
+      openCard(target.dataset.pinId);
+    }
+
+    if (isCloseCard) {
+      closeAllCards();
+    }
+  }
+
+  document.querySelector(".map").addEventListener("click", handleMapClick);
 })();

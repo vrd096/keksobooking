@@ -16,6 +16,7 @@
   };
 
   function handleLoadSuccess(pins) {
+    pins = pins.map((pin, index) => ({ ...pin, id: index }));
     window.loadPins = pins;
     console.log(pins);
     // window.updateFilter();

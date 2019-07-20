@@ -210,6 +210,7 @@ textarea:focus {
   background-color: #fff;
   border-radius: 50%;
   padding: 3px;
+  pointer-events: none;
 }
 
 .map__pin::after {
@@ -398,10 +399,6 @@ textarea:focus {
   background: none;
   border: 0;
   font-size: 0;
-}
-
-.popup__close:active {
-  transform: translate(1px, 1px);
 }
 
 .popup__close:after {

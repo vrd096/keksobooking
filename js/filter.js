@@ -21,16 +21,14 @@
   var selectFilter = pinFilters.querySelectorAll(".map__filter");
   var selectValue;
 
-  var selectFilterValue = window.loadPins.filter(function(item){
-        return item.offer.type = "house";
-      });
-      console.log(selectFilterValue);
-
-
   function filterChange(value) {
     selectValue = value;
     console.log(selectValue);
 
+    var selectFilterValue = window.loadPins.filter(function(item) {
+      return item.offer.type === selectValue;
+    });
+    console.log(selectFilterValue);
   }
 
   var getRank = function(pin) {
