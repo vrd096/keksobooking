@@ -10,6 +10,8 @@
 все фильтры применяются вместе
 на карте должно быть не более 5 пинов
 при переключении фильтра был дебаунс 500мс
+при выборе значения в фильтре, нужно использовать метом filter чтобы создавать новый массив с помощью метода map и содзавать новый массив,
+ с нужными значениями, потом уже его сортировать по рангу
 
 */
 "use strict";
@@ -19,19 +21,27 @@
   var selectFilter = pinFilters.querySelectorAll(".map__filter");
   var selectValue;
 
+  var selectFilterValue = window.loadPins.filter(function(item){
+        return item.offer.type = "house";
+      });
+      console.log(selectFilterValue);
+
+
   function filterChange(value) {
     selectValue = value;
+    console.log(selectValue);
+
   }
 
   var getRank = function(pin) {
     var rank = 0;
 
     if (pin.offer.type === selectValue) {
-      rank += 2;
+      rank += 3;
     }
 
-    if (pin.price === selectValue) {
-      rank += 1;
+    if (pin.offer.price === selectValue) {
+      rank += 2;
     }
 
     return rank;

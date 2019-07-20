@@ -17,6 +17,7 @@
 
   function handleLoadSuccess(pins) {
     window.loadPins = pins;
+    console.log(pins);
     // window.updateFilter();
     renderItems(pins, window.createPinElement, ".map__pins");
     renderItems(pins, window.createPopupElement, ".map");
