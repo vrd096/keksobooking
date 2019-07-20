@@ -7,6 +7,7 @@
       .cloneNode(true)
       .content.querySelector(".map__pin");
 
+    pinElement.classList.add("map__pin--filter");
     pinElement.classList.add("hidden");
     pinElement.style.left = pin.location.x + "px";
     pinElement.style.top = pin.location.y + "px";

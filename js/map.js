@@ -1,6 +1,5 @@
 "use strict";
 (function() {
-
   window.loadPins = [];
   window.renderItems = function renderItems(
     items,
@@ -18,9 +17,9 @@
 
   function handleLoadSuccess(pins) {
     window.loadPins = pins;
-    window.updateFilter(pins);
-    // renderItems(pins, window.createPinElement, ".map__pins");
-    // renderItems(pins, window.createPopupElement, ".map");
+    // window.updateFilter();
+    renderItems(pins, window.createPinElement, ".map__pins");
+    renderItems(pins, window.createPopupElement, ".map");
   }
 
   function handleLoadError(error) {

@@ -38,32 +38,56 @@
     return rank;
   };
 
-  var namesComparator = function(leftName, rightName) {
-    if (leftName > rightName) {
+  function namesComparator(leftType, rightType) {
+    if (leftType > rightType) {
       return 1;
-    } else if (leftName < rightName) {
+    } else if (leftType < rightType) {
       return -1;
     } else {
       return 0;
     }
-  };
+  }
 
-  var wizardsComparator = function(left, right) {
+  function wizardsComparator(left, right) {
     var rankDiff = getRank(right) - getRank(left);
-    return rankDiff === 0 ? namesComparator(left.offer.type, right.offer.type) : rankDiff;
-  };
+    return rankDiff === 0
+      ? namesComparator(left.offer.type, right.offer.type)
+      : rankDiff;
+  }
 
   window.updateFilter = function updateFilter() {
+    window.renderItems(
+      window.loadPins.sort(wizardsComparator),
+      window.createPinElement,
+      ".map__pins"
+    );
+    window.renderItems(
+      window.loadPins.sort(wizardsComparator),
+      window.createPopupElement,
+      ".map"
+    );
 
-    window.renderItems(window.loadPins.sort(wizardsComparator), window.createPinElement, ".map__pins");
-    window.renderItems(window.loadPins.sort(wizardsComparator), window.createPopupElement, ".map");
+    var pin = document.querySelectorAll(".map__pin");
+
+    pin.forEach(function(item) {
+      item.classList.remove("hidden");
+    });
   };
+
+  function clearPins() {
+    var pins = document.querySelectorAll(".map__pin--filter");
+
+    pins.forEach(function(item) {
+      item.remove();
+    });
+  }
 
   selectFilter.forEach(function(item) {
     item.addEventListener("change", function(evt) {
-      selectValue = evt.target.value;
-      filterChange(selectValue);
-      updateFilter();
+      var currentValue = evt.target.value;
+      filterChange(currentValue);
+      clearPins();
+      window.updateFilter();
     });
   });
 })();
