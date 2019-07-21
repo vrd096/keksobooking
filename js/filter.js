@@ -19,16 +19,58 @@
 (function() {
   var pinFilters = document.querySelector(".map__filters");
   var selectFilter = pinFilters.querySelectorAll(".map__filter");
+  var currentValue;
   var selectValue;
+  var selectTypeValue;
+  var selectPriceValue;
 
-  function filterChange(value) {
-    selectValue = value;
-    console.log(selectValue);
+  // function filterChangeValue(value) {
+  //   // selectValue = value;
+  //   // console.log(selectValue);
+  //   console.log(currentValue);
+  // }
 
-    var selectFilterValue = window.loadPins.filter(function(item) {
-      return item.offer.type === selectValue;
+  // function filterfilter() {
+  //   selectTypeValue = window.loadPins.filter(function(item) {
+  //     return item.offer.type === selectValue;
+  //   });
+  //   // console.log(selectTypeValue);
+  // }
+
+  function filterOnChange() {
+    var filterTypeHouses = selectFilter[0].value;
+    var filterPrice = selectFilter[1].value;
+    var filterRooms = selectFilter[2].value;
+    var filterQuests = selectFilter[3].value;
+    var offerPrice;
+
+    selectTypeValue = window.loadPins.filter(function(item) {
+      if (filterTypeHouses !== "any") {
+        return item.offer.type === filterTypeHouses;
+      }
+
+      if (filterPrice !== "any") {
+        if (item.offer.price < 10000) {
+          offerPrice = "low";
+        }
+        if (item.offer.price >= 10000 && item.offer.price < 50000) {
+          offerPrice = "middle";
+        }
+        if (item.offer.price >= 50000) {
+          offerPrice = "high";
+        }
+        return offerPrice === filterPrice;
+      }
+
+      if (filterRooms !== "any") {
+        return item.offer.rooms == filterRooms;
+      }
+
+      if (filterQuests !== "any") {
+        return item.offer.guests == filterQuests;
+      }
     });
-    console.log(selectFilterValue);
+    console.log(selectTypeValue);
   }
 
   var getRank = function(pin) {
@@ -64,12 +106,12 @@
 
   window.updateFilter = function updateFilter() {
     window.renderItems(
-      window.loadPins.sort(wizardsComparator),
+      selectTypeValue.sort(wizardsComparator),
       window.createPinElement,
       ".map__pins"
     );
     window.renderItems(
-      window.loadPins.sort(wizardsComparator),
+      selectTypeValue.sort(wizardsComparator),
       window.createPopupElement,
       ".map"
     );
@@ -95,8 +137,12 @@
 
   selectFilter.forEach(function(item) {
     item.addEventListener("change", function(evt) {
-      var currentValue = evt.target.value;
-      filterChange(currentValue);
+      currentValue = evt.target.value;
+      // console.log(currentValue);
+      // filterChangeValue(currentValue);
+      // filterfilter();
+      // filterPrice();
+      filterOnChange();
       clearPins();
       window.updateFilter();
     });

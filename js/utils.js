@@ -11,7 +11,7 @@
 
   function openCard(pinId) {
     const cardEl = [...document.querySelectorAll(".map__card")].find(
-      _cardEl => _cardEl.dataset.pinId === pinId
+      el => el.dataset.pinId === pinId
     );
 
     if (cardEl) {
