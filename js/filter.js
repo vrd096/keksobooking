@@ -24,19 +24,6 @@
   var selectTypeValue;
   var selectPriceValue;
 
-  // function filterChangeValue(value) {
-  //   // selectValue = value;
-  //   // console.log(selectValue);
-  //   console.log(currentValue);
-  // }
-
-  // function filterfilter() {
-  //   selectTypeValue = window.loadPins.filter(function(item) {
-  //     return item.offer.type === selectValue;
-  //   });
-  //   // console.log(selectTypeValue);
-  // }
-
   function filterOnChange() {
     var filterTypeHouses = selectFilter[0].value;
     var filterPrice = selectFilter[1].value;
@@ -44,12 +31,30 @@
     var filterQuests = selectFilter[3].value;
     var offerPrice;
 
-    selectTypeValue = window.loadPins.filter(function(item) {
-      if (filterTypeHouses !== "any") {
-        return item.offer.type === filterTypeHouses;
-      }
-
-      if (filterPrice !== "any") {
+    if (filterTypeHouses !== "any") {
+      selectTypeValue = window.loadPins
+        .filter(function(item) {
+          return item.offer.type === filterTypeHouses;
+        })
+        .filter(function(item) {
+          if (filterPrice !== "any") {
+            if (item.offer.price < 10000) {
+              offerPrice = "low";
+            }
+            if (item.offer.price >= 10000 && item.offer.price < 50000) {
+              offerPrice = "middle";
+            }
+            if (item.offer.price >= 50000) {
+              offerPrice = "high";
+            }
+            return offerPrice === filterPrice;
+          } else {
+            return selectTypeValue;
+          }
+        });
+    }
+    if (filterTypeHouses === "any") {
+      selectTypeValue = window.loadPins.filter(function(item) {
         if (item.offer.price < 10000) {
           offerPrice = "low";
         }
@@ -60,17 +65,91 @@
           offerPrice = "high";
         }
         return offerPrice === filterPrice;
-      }
+      });
+    }
 
-      if (filterRooms !== "any") {
-        return item.offer.rooms == filterRooms;
-      }
+    // function typePrice() {
+    //   if (filterTypeHouses !== "any") {
+    //     selectPriceValue = selectTypeValue.filter(function(item) {
+    //       if (item.offer.price < 10000) {
+    //         offerPrice = "low";
+    //       }
+    //       if (item.offer.price >= 10000 && item.offer.price < 50000) {
+    //         offerPrice = "middle";
+    //       }
+    //       if (item.offer.price >= 50000) {
+    //         offerPrice = "high";
+    //       }
+    //       return offerPrice === filterPrice;
+    //     });
+    //   } else {
+    //     selectPriceValue = window.loadPins.filter(function(item) {
+    //       if (item.offer.price < 10000) {
+    //         offerPrice = "low";
+    //       }
+    //       if (item.offer.price >= 10000 && item.offer.price < 50000) {
+    //         offerPrice = "middle";
+    //       }
+    //       if (item.offer.price >= 50000) {
+    //         offerPrice = "high";
+    //       }
+    //       return offerPrice === filterPrice;
+    //     });
+    //   }
+    //   if (filterPrice === "any") {
+    //     return (selectPriceValue = selectTypeValue);
+    //   }
+    // }
 
-      if (filterQuests !== "any") {
-        return item.offer.guests == filterQuests;
-      }
-    });
-    console.log(selectTypeValue);
+    // function numberOfRooms() {}
+
+    // var filterValue = {
+    //   any: null,
+    //   flat: typeHouses(),
+    //   house: typeHouses(),
+    //   bungalo: typeHouses(),
+    //   low: typePrice(),
+    //   middle: typePrice(),
+    //   high: typePrice()
+    // };
+
+    // selectTypeValue = window.loadPins.filter(function(item) {
+    //   return item.offer.type === filterTypeHouses;
+    // });
+    // filterValue[filterTypeHouses];
+    // filterValue[filterPrice];
+    // filterValue[filterRooms];
+    // filterValue[filterQuests];
+
+    // if (filterTypeHouses !== "any") {
+
+    // } else {
+    //   selectPriceValue = window.loadPins.filter(function(item) {
+    //     if (item.offer.price < 10000) {
+    //       offerPrice = "low";
+    //     }
+    //     if (item.offer.price >= 10000 && item.offer.price < 50000) {
+    //       offerPrice = "middle";
+    //     }
+    //     if (item.offer.price >= 50000) {
+    //       offerPrice = "high";
+    //     }
+    //     return offerPrice === filterPrice;
+    //   });
+    // }
+
+    // if (filterPrice !== "any") {}
+
+    // if (filterRooms !== "any") {
+    //   return item.offer.rooms == filterRooms;
+    // }
+
+    // if (filterQuests !== "any") {
+    //   return item.offer.guests == filterQuests;
+    // }
+
+    // console.log(filterValue);
+    // console.log(selectPriceValue);
   }
 
   var getRank = function(pin) {
