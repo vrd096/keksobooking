@@ -24,12 +24,12 @@
   function handleLoadSuccess(pins) {
     pins = pins.map((pin, index) => ({ ...pin, id: index }));
     window.loadPins = pins;
-    // console.log(pins);
+
     // window.updateFilter();
     renderItems(pins, window.createPinElement, ".map__pins");
     renderItems(pins, window.createPopupElement, ".map");
   }
-
+  // console.log(window.loadPins);
   function handleLoadError(error) {
     console.log(error);
   }
