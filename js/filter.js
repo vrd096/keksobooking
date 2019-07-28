@@ -1,19 +1,3 @@
-/*
-событие с изменением input в  .map__filters
-при выборе типа в инпуте, должна происходить сортировка входящих данных с сервера по рейтингу :
-типа жалья 3 очка
-цена 2 очка
-количество комнат 1
-число гостей 1
-показывать пины, которые подходят под критерии фильтров
-метки которые были отрисованы до фильтров нужно убрать
-все фильтры применяются вместе
-на карте должно быть не более 5 пинов
-при переключении фильтра был дебаунс 500мс
-при выборе значения в фильтре, нужно использовать метом filter чтобы создавать новый массив с помощью метода map и содзавать новый массив,
- с нужными значениями, потом уже его сортировать по рангу
-
-*/
 "use strict";
 
 (function() {
@@ -62,13 +46,16 @@
     return (filterLoadData = filterValuePrice);
   }
 
+function anyValue() {
+  return filterLoadData;
+};
 
-
-  function filterOnChange() {
+  function valueOnChange() {
     valueFromInput();
 
+
     var filterValue = {
-      any: filterLoadData,
+      any:  anyValue(),
       flat: filterHouses(),
       house: filterHouses(),
       bungalo: filterHouses(),
@@ -113,7 +100,7 @@
 
   selectFilter.forEach(function(item) {
     item.addEventListener("change", function(evt) {
-      filterOnChange();
+      valueOnChange();
       clearPins();
       window.updateFilter();
     });
