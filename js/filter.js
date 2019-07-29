@@ -31,6 +31,7 @@
 
   // // console.log(filterLoadData);
   function filterPrice() {
+    console.log(filterLoadData);
     var filterValuePrice = filterLoadData.filter(function(item) {
       if (item.offer.price < 10000) {
         offerPrice = "low";
@@ -55,7 +56,7 @@ function anyValue() {
 
 
     var filterValue = {
-      any:  anyValue(),
+      any:  filterLoadData,
       flat: filterHouses(),
       house: filterHouses(),
       bungalo: filterHouses(),
@@ -64,7 +65,7 @@ function anyValue() {
       high: filterPrice()
     };
 
-    filterLoadData = filterValue[currentTypeHouses];
+    // filterLoadData = filterValue[currentTypeHouses];
     console.log(filterLoadData);
     filterLoadData = filterValue[currentPrice];
 
