@@ -1,6 +1,5 @@
 "use strict";
 (function() {
-  window.loadPins = [];
   window.renderItems = function renderItems(
     items,
     createElement,
@@ -18,18 +17,20 @@
       });
     }
 
-    document.querySelector(targetSelector).appendChild(fragment);
+    const container = document.querySelector(targetSelector);
+    container.textContent = '';
+    container.appendChild(fragment);
   };
 
   function handleLoadSuccess(pins) {
     pins = pins.map((pin, index) => ({ ...pin, id: index }));
-    window.loadPins = pins;
+    window.loadedPins = pins;
 
     // window.updateFilter();
-    renderItems(pins, window.createPinElement, ".map__pins");
-    renderItems(pins, window.createPopupElement, ".map");
+    renderItems(pins, window.createPinElement, ".js-pins");
+    renderItems(pins, window.createPopupElement, ".js-popups");
   }
-  // console.log(window.loadPins);
+
   function handleLoadError(error) {
     console.log(error);
   }
