@@ -87,7 +87,6 @@
   document
     .querySelector(".js-filters-form")
     .addEventListener("change", ({ target: filterElm }) => {
-      console.log(filterElm);
       updateFilter(filterElm);
       const filteredPins = filterPins(window.loadedPins);
       renderPins(filteredPins);
