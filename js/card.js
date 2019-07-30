@@ -15,6 +15,7 @@
       .content.querySelector(".map__card");
 
     popupElement.classList.add("hidden");
+    popupElement.dataset.pinId = pin.id;
 
     popupElement.querySelector(".popup__description").textContent =
       pin.offer.description;

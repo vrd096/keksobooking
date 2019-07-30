@@ -6,6 +6,7 @@
   var formUpload = document.querySelector(".notice__form");
   var popupError = document.querySelector(".popup-error");
   var popupErrorText = document.querySelector(".popup-error__text");
+  var ESC_KEYCODE = 27;
 
   numberPeople.addEventListener("change", function() {
     for (var i = 0; i < numberRoom.value; i++) {
@@ -21,8 +22,28 @@
     formUpload.reset();
   }
 
-  function popupErrorOpen() {
+  function handleEsq({ keyCode }) {
+    if (keyCode === ESC_KEYCODE) {
+      closeError();
+    }
+  }
+
+  function closeError() {
+    popupError.classList.add("hidden");
+
+    popupError
+      .querySelector(".popup-error__close")
+      .removeEventListener("click", closeError);
+    document.removeEventListener("keyup", handleEsq);
+  }
+
+  function openError() {
     popupError.classList.remove("hidden");
+
+    popupError
+      .querySelector(".popup-error__close")
+      .addEventListener("click", closeError);
+    document.addEventListener("keyup", handleEsq);
   }
 
   var translations = {
@@ -55,9 +76,7 @@
       alert(messages);
     }
 
-    throw error;
-
-    popupErrorOpen();
+    openError();
   }
 
   formUpload.addEventListener("submit", function onFormSubmit(evt) {
