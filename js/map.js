@@ -17,9 +17,7 @@
       });
     }
 
-    const container = document.querySelector(targetSelector);
-    container.textContent = '';
-    container.appendChild(fragment);
+    document.querySelector(targetSelector).appendChild(fragment);
   };
 
   function handleLoadSuccess(pins) {
@@ -27,8 +25,8 @@
     window.loadedPins = pins;
 
     // window.updateFilter();
-    renderItems(pins, window.createPinElement, ".js-pins");
-    renderItems(pins, window.createPopupElement, ".js-popups");
+    renderItems(pins, window.createPinElement, ".map__pins");
+    renderItems(pins, window.createPopupElement, ".map");
   }
 
   function handleLoadError(error) {

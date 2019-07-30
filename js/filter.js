@@ -1,11 +1,5 @@
 "use strict";
 
-// features: ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"] (6)
-// guests: 6
-// price: 42000
-// rooms: 3
-// type: "house"
-
 (function() {
   const any = "any";
   const priceRanges = {
@@ -18,7 +12,7 @@
   var priceRange = any;
   var roomsNumber = any;
   var guestsNumber = any;
-  var features = new Set();
+  var features = {};
 
   function updateFilter({ name, value, checked }) {
     switch (name) {
@@ -36,9 +30,9 @@
         break;
       case "features":
         if (checked) {
-          features.add(value);
+          features[value] = true;
         } else {
-          features.delete(value);
+          delete features[value];
         }
         break;
       default:
@@ -69,7 +63,7 @@
 
       if (
         features.size !== 0 &&
-        [...features].some(feature => !offer.features.includes(feature))
+        Object.keys(features).some(feature => !offer.features.includes(feature))
       ) {
         return false;
       }
@@ -79,8 +73,11 @@
   }
 
   function renderPins(pins) {
-    window.renderItems(pins, window.createPinElement, ".js-pins");
-    window.renderItems(pins, window.createPopupElement, ".js-popups");
+    document.querySelectorAll(".map__pin").forEach(item => item.remove());
+    document.querySelectorAll(".map__card").forEach(item => item.remove());
+
+    window.renderItems(pins, window.createPinElement, ".map__pins");
+    window.renderItems(pins, window.createPopupElement, ".map");
 
     document.querySelectorAll(".map__pin").forEach(function(item) {
       item.classList.remove("hidden");
