@@ -1,10 +1,10 @@
 "use strick";
 
-(function(){
-  var FILE_TYPES = ["gif", "jpg", "jpeg", "png"]
-  var fileAvatar = document.querySelector(".ad-form__field input[type=file]");
-  var preview = document.querySelector(".ad-form-header__preview");
-  console.log(preview);
+(function() {
+  var FILE_TYPES = ["gif", "jpg", "jpeg", "png"];
+  var fileAvatar = document.querySelector(".js-upload-avatar ");
+  var preview = document.querySelector(".js-load__preview");
+
   fileAvatar.addEventListener("change", function() {
     var file = fileAvatar.files[0];
     var fileName = file.name.toLowerCase();
@@ -23,5 +23,4 @@
       reader.readAsDataURL(file);
     }
   });
-
-}());
+})();
