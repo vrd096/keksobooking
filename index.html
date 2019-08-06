@@ -179,13 +179,14 @@
               <div class="upload">
                 <div class="notice__preview">
                   <img
+                    class="ad-form-header__preview"
                     src="img/muffin.png"
                     alt="Аватар пользователя"
                     width="40"
                     height="44"
                   />
                 </div>
-                <input type="file" id="avatar" />
+                <input type="file" id="avatar" class="ad-form__field"/>
                 <label class="drop-zone" for="avatar"
                   >Загрузите или&nbsp;перетащите сюда фото</label
                 >
@@ -354,7 +355,7 @@
             <label>Фотографии жилья</label>
             <div class="form__photo-container">
               <div class="upload">
-                <input type="file" id="images" />
+                <input type="file" id="images" class="ad-form__upload"/>
                 <label for="images" class="drop-zone"
                   >Загрузите или&nbsp;перетащите сюда фото</label
                 >
@@ -482,6 +483,7 @@
     <script src="js/form.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/filter.js"></script>
+    <!-- <script src="js/avatar.js"></script> -->
     <script src="js/popup-move.js"></script>
   </body>
 </html>
